@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        
+        <title>Authentification</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" th:href="@{font-awesome-4.7.0/css/font-awesome.min.css}">
+        <link rel="stylesheet" th:href="@{Angular-Materialize/materialize.min.css}">
+        <link rel="stylesheet" th:href="@{css/myStyle.css}">
+        <link rel="stylesheet" th:href="@{css/style_tests.css}">
+
+    </head>
+    <body style="background-image: url('/images/Wallpapers/11.jpg'); background-attachment: fixed; background-size: 100%;">
+        <script type="text/javascript" th:src="@{Angular-Materialize/jquery-3.1.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{Angular-Materialize/materialize.min.js}"></script>
+        <script type="text/javascript" th:src="@{js/script.js}"></script>
+
+        <div class="row container col s12 offset-s6">
+            <div class="row pad center">
+                <img th:src="@{images/Wallpapers/index.jpg}" class="circle">
+            </div>
+            <form th:action="@{/login}" method="post">
+                <div class="row pad">
+                <div class="input-field col s6 offset-s3">
+                    <i class="prefix fa fa-user-circle"></i>
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" name="username" id="username" class="validate pad" required/>
+                </div>
+                    
+                </div>
+                <div class="row pad">
+                    <div class="input-field col s6 offset-s3">
+                        <i class="fa fa-key prefix"></i>
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password" class="validate pad" required/>
+                    </div>
+                </div>
+                <div class="row pad">
+                    <div class="center">
+                            <button class="btn btn-flat center waves-effect waves-teal" type="submit">Connexion <i class="fa fa-chevron-right right"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

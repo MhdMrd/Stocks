@@ -1,0 +1,142 @@
+@font-face {
+  font-family: "Font Awesome";
+  src: url("../fonts/Ubuntu-C.ttf") format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: "Rahjdani";
+  src: url("../fonts/Rajdhani-SemiBold.ttf") format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: "BenchNine";
+  src: url("../fonts/BenchNine-Bold.ttf") format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+body{
+  font-family: "Rahjdani";
+}
+
+/*.picker__date-display, .picker__weekday-display{
+      background-color: rgb(25, 118, 210);
+}
+*/
+
+.picker__date-display, .picker__weekday-display{
+        background-color: rgb(25, 118, 210);
+    }
+
+    div.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
+        background-color: rgb(25, 118, 210);
+    }
+
+    button.picker__today, button.picker__close {
+        color:rgb(25, 118, 210);
+    }
+
+.pad{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+a{
+  color: blue darken-2;
+}
+
+.input-field label {
+     color: #2979ff;
+   }
+
+.input-field input[type=text], input[type=number].valid {
+   border-bottom: 1px solid rgb(25, 118, 210);
+   box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+}
+
+
+
+.input-field textarea:focus{
+        color: rgb(25, 118, 210);
+}
+
+.input-field textarea:focus{
+        border-bottom: 1px solid rgb(25, 118, 210);
+        box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+}
+.input-field textarea[class="validate"] {
+        border-bottom: 1px solid rgb(25, 118, 210);
+        box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+}
+
+.topcorner{
+   position:fixed;
+   top:10px;
+   right:10px;
+  }
+
+.logo{
+  font-family: "Rahjdani";
+}
+
+.global-header {
+    min-height:600px;
+    background-image: url("images/Wallpapers/9.jpg");
+    background-size: cover;
+    text-align: center;
+}
+
+   
+    /*label focus color */
+   .input-field input[type=text], input[type=number]:focus + label {
+     color: rgb(25, 118, 210);
+   }
+
+    /*label underline focus color*/
+   .input-field input[type=text], input[type=number]:focus {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+    
+   .input-field input[id="username"]:focus {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+
+   .input-field input[id="username"] {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+
+  .input-field input[id="password"]:focus + label {
+     color: #2979ff;
+   }
+
+    /*label underline focus color*/
+   .input-field input[id="password"]:focus {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+
+   .input-field input[id="password"] {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+
+   .input-field input[id="input_starttime"]:focus {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+
+   .input-field input[id="input_starttime"] {
+     border-bottom: 1px solid rgb(25, 118, 210);
+     box-shadow: 0 1px 0 0 rgb(25, 118, 210);
+   }
+   
+   .input-field .prefix.active {
+     color: rgb(25, 118, 210);
+   }

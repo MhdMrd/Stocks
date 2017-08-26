@@ -1,0 +1,45 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<title>Nouvelle catégorie</title>
+<h3 class="header center">Nouvelle catégorie&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container" ng-init="load(categorie)">
+  <input-field>
+    <input type="text" ng-model="categorie.nom" length="50" class="validate pad" required>
+    <label>Nom</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="categorie.quantiteDisponible" length="50" class="validate pad" required>
+    <label>Quantité disponible</label>
+  </input-field>
+  <input-field>
+    <textarea  ng-model="categorie.remarque" class="materialize-textarea" class="validate pad" required></textarea>
+    <label>Remarque</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.nom}}</p>
+                <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.quantiteDisponible}}</p>
+                <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.remarque}}</p>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#/stocks/listes/categories" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(categorie)">Oui</a>
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(categorie)">Non</a>
+    </div>
+</div>
+</div>

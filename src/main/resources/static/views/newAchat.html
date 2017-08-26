@@ -1,0 +1,82 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouvel achat</title>
+<h3 class="header center">Nouvel achat&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+<div class="container" ng-init="onload()">
+    <div class="row pad">
+      <input-field col-s6>
+          <label for="Client" ng-hide="achat.client!='Client'">Client</label>
+          <select id="Client" ng-options="client[2] for client in clients.choices[1].content" class="" ng-change="update(client[0])" ng-model="achat.client" ng-init="achat.client='Client'" material-select watch>
+
+              <!--option ng-repeat="client in clients.choices[0].content">{{client[2]}} {{client[3]}}</option-->
+          </select>
+      </input-field>
+    </div>
+    <div class="row pad">
+      <input-field col-s6>
+          <label for="Produit" ng-hide="achat.produit!='Produit'">Produit</label>
+          <select id="Produit" ng-options="produit[2] for produit in produits.choices[0].content" class="" ng-change="updateProduit(produit[0])" ng-model="achat.produit" material-select watch>
+              <!--option>Produit</option>
+              <option ng-repeat="produit in produits.choices[0].content">{{produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{produit[3]}}]</option-->
+          </select>
+      </input-field>
+    </div>
+    <div class="row pad">
+      <label for="input_starttime">Heure</label>
+    <input ng-model="time" id="input_starttime" input-clock data-twelvehour="false" type="text">
+    </div>
+    <div class="row pad">
+      <label for="inputCreated">Date</label>
+  <input input-date
+      ng-model="date"
+      type="text"
+      name="created"
+      id="inputCreated"
+      ng-model="currentTime"
+      container=""
+      format="yyyy-mm-dd"
+      months-full="{{ month }}"
+      months-short="{{ monthShort }}"
+      weekdays-full="{{ weekdaysFull }}"
+      weekdays-short="{{ weekdaysShort }}"
+      weekdays-letter="{{ weekdaysLetter }}"
+      disable="disable"
+      min="{{ minDate }}"
+      max="{{ maxDate }}"
+      today="today"
+      first-day="1"
+      clear="clear"
+      close="close"
+      select-years="15"
+      on-start="onStart()"
+      on-render="onRender()"
+      on-open="onOpen()"
+      on-close="onClose()"
+      on-set="onSet()"
+      on-stop="onStop()" />
+    </div>
+  <!-- Modal Trigger -->
+  <div class="col pad">
+      <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-pencil right"></i></a>
+      <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+  </div>
+  <div id="confirmationModal" class="modal">
+      <div class="modal-content center">
+          <div class="title">
+            <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+          </div>
+          <div class="row">
+                  <p class="left-align">Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{achat.client[2]}}&nbsp&nbsp{{achat.client[3]}}</p>
+                  <p class="left-align">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{achat.produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{achat.produit[3]}}]</p>
+                  <p class="left-align">Date d'achat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{date}} {{time}}</p>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <a href="#/stocks/listes/achats" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(employe)">Oui</a>
+          <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(employe)">Non</a>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouvel employé</title>
+<h3 class="header center">Nouvel employé &nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+<div class="container">
+  <input-field>
+    <input type="text" ng-model="employe.matricule" length="50" required class="validate pad">
+    <label>Matricule</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="employe.nom" length="50"  required class="validate pad">
+    <label>Nom</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="employe.prenom" length="50" class="validate pad">
+    <label>Prénom</label>
+</input-field>
+<input-field>
+  <input type="text" ng-model="employe.poste" length="50"  required class="validate pad">
+  <label>Poste</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col pad">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Matricule:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{employe.matricule}}</p>
+                <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{employe.nom}}</p>
+                <p class="left-align">Prénom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{employe.prenom}}</p>
+                <p class="left-align">poste:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{employe.poste}}</p>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#/stocks/listes/employes" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(employe)">Oui</a>
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(employe)">Non</a>
+    </div>
+</div>
+</div>

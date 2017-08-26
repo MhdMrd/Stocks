@@ -1,0 +1,85 @@
+ 
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" type="text/css" href="../materialize/css/materialize.min.css">
+ <script type="text/javascript" src="../Angular-Materialize/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+    <meta charset="utf-8">
+ <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Autocomplete</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>Email</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="collapsible" onclick="$('.collapsible').collapsible('open', 0);">
+        <td class="collapsible-header">Mourad</td>
+        <td class="collapsible-body">Mohammad</td>
+        <td class="collapsible-body">mohammadabdoulahi@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Mourad</td>
+        <td>Mohammad</td>
+        <td>mohammadabdoulahi@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Mourad</td>
+        <td>Mohammad</td>
+        <td>mohammadabdoulahi@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Mourad</td>
+        <td>Mohammad</td>
+        <td>mohammadabdoulahi@gmail.com</td>
+      </tr>
+
+    </tbody>
+  </table>
+<a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')">Open tap target</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('close')">Close tap target</a>
+
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+          <a id="menu" class="btn btn-floating btn-large cyan">Ok</a>
+        </div>
+
+        <div class="tap-target cyan" data-activates="menu">
+          <div class="tap-target-content white-text">
+            <h5>I am here</h5>
+            <p class="white-text">Provide value and encourage return visits by introducing users to new features and functionality at contextually relevant moments.</p>
+          </div>
+        </div>
+      </div>
+  <script type="text/javascript">
+  /*$(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+    data: {
+      "Apple": null,
+      "Microsoft": null,
+      "Google": 'https://placehold.it/250x250'
+    },
+    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+    onAutocomplete: function(val) {
+      // Callback function when value is autcompleted.
+    },
+    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+  });
+   
+  });*/
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+        
+     
+  </script>

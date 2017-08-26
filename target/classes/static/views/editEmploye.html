@@ -1,0 +1,51 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modification d'un employé</title>
+<h3 class="header center">Modification d'un employé&nbsp&nbsp <i class="fa fa-pencil-square-o"></i></h3>
+<div class="container" ng-init="onload()">
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][1]" length="50" required class="validate pad">
+    <label>Matricule</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][2]" length="50"  required class="validate pad">
+    <label>Nom</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][3]" length="50" class="validate pad">
+    <label>Prénom</label>
+</input-field>
+<input-field>
+  <input type="text" ng-model="selectedItem.content[0][4]" length="50"  required class="validate pad">
+  <label>Poste</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col pad">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Modifier <i class="fa fa-pencil right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez mettre à jour?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Matricule:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
+                <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
+                <p class="left-align">Prénom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
+                <p class="left-align">poste:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
+            </tbody>
+          </table>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#/stocks/listes/employes" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(employe)">Oui</a>
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(employe)">Non</a>
+    </div>
+</div>

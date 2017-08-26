@@ -1,0 +1,44 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<title>Nouveau client</title>
+<h3 class="header center">Nouveau client&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container" ng-init="onload()">
+  <input-field>
+    <input type="text" ng-model="client.numCNI" length="50" required class="validate pad">
+    <label>Numéro CNI</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="client.nom" length="50"  required class="validate pad">
+    <label>Nom</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="client.prenom" length="50" class="validate pad">
+    <label>Prénom</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col pad">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Numéro CNI:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{client.numCNI}}</p>
+                <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{client.nom}}</p>
+                <p class="left-align">Prénom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{client.prenom}}</p>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#/stocks/listes/clients" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(client)">Oui</a>
+        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(client)">Non</a>
+    </div>
+</div>

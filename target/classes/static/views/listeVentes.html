@@ -1,0 +1,78 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<title>Liste des ventes</title>
+<h3 class="header center">Liste des ventes&nbsp&nbsp <i class="fa fa-list-alt"></i></h3>
+<div class="container row" ng-init="load()">
+  <table class="responsive-table">
+    <thead>
+      <tr>
+        <td>Employé</td>
+        <td>Produit</td>
+        <td>Client</td>
+        <td>Prix</td>
+        <td>Etat</td>
+        <td>Date</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="vente in ventes.content">
+        <td>{{vente[1]}}&nbsp{{vente[2]}}</td>
+        <td>{{vente[3]}}</td>
+        <td>{{vente[8]}}&nbsp{{vente[9]}}</td>
+        <td>{{vente[7]}} FCFA</td>
+        <td>{{vente[6]}}</td>
+        <td>{{vente[5] | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+        <td><a href ="" ng-click="details(vente[0])" class=""data-target="informationsModal" modal>Détails</a></td>
+        <td><a ng-href="#stocks/edit/vente/{{vente[0]}}" class="">Modifier</a></td>
+        <td><a href ="" ng-click="details(vente[0])" class=""data-target="deleteModal" modal>Supprimer</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <ul class="pagination">
+        <li ng-class="{disabled:page<=0}"><a ng-click="gotoPage(page-1)" ng-if="total>0"><i class="fa fa-angle-left"></i></a></li>
+        <li ng-class="{active:$index==page}" ng-repeat="p in totalPages track by $index"><a href="" ng-click="gotoPage($index)">{{$index + 1}}</a></li>
+        <li ng-class="{disabled:page+1==total}"><a ng-click="gotoPage($index+1)" ng-if="$index+1<total"><i class="fa fa-angle-right"></i></a></li>
+    </ul>
+  </div>
+</div>
+<div id="informationsModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Détails de la vente</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
+                <p class="left-align">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp-&nbsp&nbsp[{{selectedItem.content[0][4]}}]</p>
+                <p class="left-align">Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][9]}}</p>
+                <p class="left-align">Prix:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7]}} FCFA</p>
+                <p class="left-align">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
+                <p class="left-align">Date de vente:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="" align="center" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+<div id="deleteModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Êtes-vous certain de vouloir supprimer cette vente?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
+                <p class="left-align">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp-&nbsp&nbsp[{{selectedItem.content[0][4]}}]</p>
+                <p class="left-align">Date de vente:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#/stocks/listes/ventes" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="delete(selectedItem.content[0][0])">Oui</a>
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Non</a>
+    </div>
+</div>
+<div class="row">
+  {{dateS.date}}
+</div>

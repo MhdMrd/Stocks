@@ -1,0 +1,44 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<title>Modification d'un client</title>
+<h3 class="header center">Modification d'un client&nbsp&nbsp <i class="fa fa-pencil-square-o"></i></h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container" ng-init="onload()">
+  <input-field>
+    <input value="" type="text" ng-model="selectedItem.content[0][1]" length="50" required class="validate pad">
+    <label>Numéro CNI</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][2]" length="50"  required class="validate pad">
+    <label>Nom</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][3]" length="50" class="validate pad">
+    <label>Prénom</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col pad">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Modifier <i class="fa fa-pencil right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez mettre à jour?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align">Numéro CNI:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
+                <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
+                <p class="left-align">Prénom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#/stocks/listes/clients" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(client)">Oui</a>
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(client)">Non</a>
+    </div>
+</div>

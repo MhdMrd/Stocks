@@ -1,0 +1,49 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modification d'achat</title>
+<h3 class="header center">Modification d'achat&nbsp&nbsp <i class="fa fa-pencil-square-o"></i></h3>
+<div class="container" ng-init="onload()">
+    <div class="row pad">
+      <input-field col-s6>
+          <label for="Client" ng-hide="hide">{{selectedItem.content[0][1]}} {{selectedItem.content[0][2]}}</label>
+          <select id="Client" ng-options="client[2] for client in clients.choices[1].content" class="" ng-change="update(client[0])" ng-model="selectedItem.content[0][1]" material-select watch>
+
+              <!--option ng-repeat="client in clients.choices[0].content">{{client[2]}} {{client[3]}}</option-->
+          </select>
+      </input-field>
+    </div>
+    <div class="row pad">
+      <input-field col-s6>
+          <label for="Produit" ng-hide="hideProduit">{{selectedItem.content[0][3]}}</label>
+          <select id="Produit" ng-options="produit[2] for produit in produits.choices[0].content" class="" ng-change="updateProduit(produit[0])" ng-model="selectedItem.content[0][3]" material-select watch>
+              <!--option>Produit</option>
+              <option ng-repeat="produit in produits.choices[0].content">{{produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{produit[3]}}]</option-->
+          </select>
+      </input-field>
+    </div>
+
+  <!-- Modal Trigger -->
+  <div class="col pad">
+      <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Modifier <i class="fa fa-pencil right"></i></a>
+      <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+  </div>
+  <div id="confirmationModal" class="modal">
+      <div class="modal-content center">
+          <div class="title">
+            <h5>Est-ce bien les informations que vous voulez mettre à jour?</h5>
+          </div>
+          <div class="row">
+                  <p class="left-align">Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1][2]}}&nbsp&nbsp{{selectedItem.content[0][1][3]}}</p>
+                  <p class="left-align">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][4]}}&nbsp&nbsp-&nbsp&nbsp[{{selectedItem.content[0][4]}}]</p>
+                  
+          </div>
+      </div>
+      <div class="modal-footer">
+          <a href="#/stocks/listes/achats" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(achat)">Oui</a>
+          <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(achat)">Non</a>
+      </div>
+  </div>
+</div>

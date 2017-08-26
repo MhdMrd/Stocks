@@ -1,0 +1,224 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Angular-Materialize/materialize.min.css">
+    <link rel="stylesheet" href="Angular-Materialize/materialize.clockpicker.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+    <link rel="stylesheet" href="css/style_tests.css">
+  </head>
+  <body ng-app = "stocksApp">
+    <script type="text/javascript" src="Angular-Materialize/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/materialize.min.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/angular.1.6.5.min.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/materialize.clockpicker.js"></script>
+    <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/angular-resource.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/underscore.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/restangular.js"></script>
+    <script type="text/javascript" src="Angular-Materialize/angular-materialize.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/auto_complete.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/scripts2.js"></script>
+    <!--Controllers-->
+    <script type="text/javascript" src="js/controllers/homeController.js"></script>
+    <script type="text/javascript" src="js/controllers/categorieControllers.js"></script>
+    <script type="text/javascript" src="js/controllers/clientControllers.js"></script>
+    <script type="text/javascript" src="js/controllers/employeControllers.js"></script>
+    <script type="text/javascript" src="js/controllers/achatControllers.js"></script>
+    <script type="text/javascript" src="js/controllers/venteControllers.js"></script>
+    <!--Factories-->
+    <script type="text/javascript" src="js/factories/CategorieService.js"></script>
+    <script type="text/javascript" src="js/factories/ClientService.js"></script>
+    <script type="text/javascript" src="js/factories/EmployeService.js"></script>
+    <script type="text/javascript" src="js/factories/AchatService.js"></script>
+    <script type="text/javascript" src="js/factories/VenteSerice.js"></script>
+
+    
+      <div class="parallax-container" ng-if="!home">
+        <div class="parallax">
+          <img src="images/Wallpapers/12.jpg">
+        </div>
+      </div>
+
+    <!--Toolbar -> navbar-->
+  <div class="fixed-action-btn toolbar topcorner" ng-controller="indexController">
+    <a class="btn-floating pulse blue darken-2">
+      <!--i class="fa fa-ellipsis-h" style="font-size:13px;"></i-->
+      <i class="fa fa-angle-left"></i>
+    </a>
+    <ul class="right hide-on-med-and-down">
+
+      <li class="brand-logo logo left"><a href="#">Gestion de stocks CAMTEL-Mra</a></li>
+      <li class="waves-effect waves-ligth"><a href="/login?logout"><i class="fa fa-sign-out center"></i>&nbsp&nbspDéconnexion</a></li>
+      <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-user-circle">&nbsp&nbsp</i><span class="left-align">
+      {{username}}</span></a></li>
+      <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-bar-chart"></i>&nbsp&nbspStatistiques</a></li>
+      <li class="waves-effect waves-light"><a href="#!"><i class="fa fa-bell"></i>&nbsp&nbspNotifications</a></li>
+      <li class="waves-effect waves-light"><a href="#/"><i class="fa fa-home"></i>&nbsp&nbspAcceuil</a></li>
+      <li data-activates="slide-out" class="button-collapse" data-sidenav="left" data-closeonclick="true"><a href=""><i class="fa fa-bars" aria-hidden="true"></i></a></li>
+    </ul>
+  </div>
+
+    <!--Sidenav-->
+    <div class="slide_menu" style="color:#004d40">
+
+          <ul id="slide-out" class="collection side-nav">
+          <li class="collection-item avatar" id="li_avatar">
+              <img id="img_avatar" src="images/Photos de profils/default-avatar.jpg" class="materialboxed circle" />
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="absolute" id="status">
+                    mohammadabdoulahi@gmail.com <br>
+                    <div class="divider"></div>
+                    <p class="truncate">CAMTEL-Maroua-CESIR</p>
+                </div>
+
+          </li>
+
+          <li class="no-padding menu_side" id="li_slide">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a href="" class="waves-effect waves-purple collapsible-header" >Produits<i style="color:#4e342e" id="i_menu_side" class="fa fa-product-hunt left"></i></a>
+                  <div class="collapsible-body">
+                    <ul data-collapsible="accordion">
+                        <li><a href="#/stocks/listes/produits">Liste</a></li>
+                        <li><a href="#/stocks/add/produit">Ajouter</a></li>
+                        <li><a href="#/stocks/listes/produits">Modifier/Supprimer</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+          </li>
+
+          <li class="no-padding menu_side" id="li_slide">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a href="" class="waves-effect waves-orange collapsible-header" >Catégories de produits<i style="color:#e53935 " id="i_menu_side" class="fa fa-object-group left"></i></a>
+                  <div class="collapsible-body">
+                      <ul data-collapsible="accordion">
+                        <li><a href="#/stocks/listes/categories">Liste</a></li>
+                        <li><a href="#/stocks/add/categorie">Ajouter</a></li>
+                        <li><a href="#/stocks/listes/categories">Modifier/Supprimer</a></li>
+                      </ul>
+                  </div>
+                </li>
+              </ul>
+          </li>
+
+              <li class="no-padding menu_side" id="li_slide">
+                <ul class="collapsible collapsible-accordion">
+                  <li class="bold"><a href="" class="waves-effect waves-orange collapsible-header" >Employés<i style="color:#6a1b9a " id="i_menu_side" class="fa fa-users"></i></a>
+                    <div class="collapsible-body">
+                      <ul data-collapsible="accordion">
+                        <li><a href="#/stocks/listes/employes">Liste</a></li>
+                        <li><a href="#/stocks/add/employe">Ajouter</a></li>
+                        <li><a href="#/stocks/listes/employes">Modifier/Supprimer</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+          <li class="no-padding menu_side" id="li_slide">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a href="" class="waves-effect waves-yellow collapsible-header" >Clients<i style="color:#00695c" id="i_menu_side" class="fa fa-credit-card left"></i></a>
+                  <div class="collapsible-body">
+                    <ul data-collapsible="accordion">
+                      <li><a href="#/stocks/listes/clients">Liste</a></li>
+                      <li><a href="#/stocks/add/client">Ajouter</a></li>
+                      <li><a href="#/stocks/listes/clients">Modifier/Supprimer</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+          </li>
+
+          <li class="no-padding menu_side" id="li_slide">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a href="" class="waves-effect waves-red collapsible-header" >Ventes/Achats<i style="color:#b0bec5" id="i_menu_side" class="fa fa-usd left"></i></a>
+                  <div class="collapsible-body">
+                    <ul data-collapsible="accordion">
+                      <li><a href="#/stocks/listes/ventes">Liste des ventes</a></li>
+                      <li><a href="#/stocks/listes/achats">Liste des achats</a></li>
+                      <li><a href="#/stocks/add/vente">Vendre</a></li>
+                      <li><a href="#/stocks/add/achat">Ajouter un achat</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+          </li>
+
+          <li class="no-padding menu_side" id="li_slide">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a href="" class="waves-effect waves-yellow collapsible-header" >Commandes<i style="color:#bf360c" id="i_menu_side" class="fa fa-truck left"></i></a>
+                  <div class="collapsible-body">
+                    <ul data-collapsible="accordion">
+                      <li><a href="#/stocks/listes/commandes">Liste</a></li>
+                      <li><a href="#/stocks/add/commande">Passer une commande</a></li>
+                      <li><a href="#/stocks/listes/commandes">Modifier/Supprimer</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+          </li>
+
+          <li class="no-padding menu_side" id="li_slide">
+              <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a href="" class="waves-effect waves-yellow collapsible-header">Bilans<i style="color:#3e2723" id="i_menu_side" class="fa fa-balance-scale left"></i></a>
+                  <div class="collapsible-body">
+                    <ul data-collapsible="accordion">
+                      <li><a href="#/stocks/listes/bilans">Liste</a></li>
+                      <li><a href="#/stocks/add/bilan">Générer un bilan</a></li>
+                      <li><a href="#/stocks/listes/bilan">Modifier/Supprimer</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+          </li>
+
+        </ul>
+      </div>
+      <br>
+      <br>
+      <br>
+    <div ng-view>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="parallax-container" ng-if="!home">
+        <div class="parallax">
+          <img src="images/Wallpapers/2.jpg">
+        </div>
+      </div>
+  </body>
+  <script type="text/javascript">
+  stocksApp
+  .controller("indexController", ["$scope", "$http", function ($scope, $http) {
+    $scope.username = "";
+    $http.get("http://localhost:8080/getUserAuthenticated").then(successCallback, errorCallback);
+    function successCallback(response){
+      $scope.username = response.data.content[0][1];
+    };
+    function errorCallback(error){
+      console.log(error);
+    }
+  }]);
+
+  </script>
+</html>
