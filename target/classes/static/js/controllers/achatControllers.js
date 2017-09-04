@@ -59,7 +59,7 @@ stocksApp
     $scope.getListe=function(){
       if($scope.endOfPath=="achats"){
         $scope.isGet=true;
-        $http.get("http://localhost:8080/stocks/listes/achats?page="+$scope.page+"&size=2").then(successCallback, errorCallback);
+        $http.get("/stocks/listes/achats?page="+$scope.page+"&size=2").then(successCallback, errorCallback);
       }
     }
     $scope.getListe();

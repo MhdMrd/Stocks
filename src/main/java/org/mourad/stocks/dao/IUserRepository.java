@@ -13,6 +13,6 @@ import org.springframework.data.repository.query.Param;
  * @author Mourad<mohammadabdoulahi@gmail.com>
  */
 public interface IUserRepository extends JpaRepository<User, Long>{
-    @Query("SELECT u.idUser, u.username, u.isActive,u.employe.nom, u.employe.prenom FROM User u WHERE u.idUser = :x")
+    @Query("SELECT u.idUser, u.username, u.isActive,u.employe.nom, u.employe.prenom, u.employe.idEmploye FROM User u WHERE u.idUser = :x")
     public Page<Object[]> getUser(@Param("x") Long idUser, Pageable pageable);
 }

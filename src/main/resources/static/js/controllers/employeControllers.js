@@ -24,7 +24,7 @@ stocksApp
     $scope.getListe = function(){
       if($scope.endOfPath=="employes"){
         $scope.isGet=true;
-        $http.get("http://localhost:8080/stocks/listes/employes?page="+$scope.page).then(successCallback, errorCallback);
+        $http.get("/stocks/listes/employes?page="+$scope.page).then(successCallback, errorCallback);
     }
     }
     $scope.getListe();

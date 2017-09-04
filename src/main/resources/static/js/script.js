@@ -3,6 +3,7 @@ $(document).ready(function(){
         accordion: true
     });
     $('.parallax').parallax();
+    $('.tooltipped').tooltip();
     $(".button-collapse").sideNav();
     $('.carousel').carousel();
     $('.slider').slider({

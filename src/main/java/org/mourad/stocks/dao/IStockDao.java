@@ -28,6 +28,7 @@ public interface IStockDao {
     public Client modifierClient(Client client, Long idClient);
     public void supprimerClient(Long idClient);
     public Vente ajouterVente(Vente vente);
+    public Page<Object[]> getProduit(Long idProduit, int page, int size);
     //public Achat ajouterAchat(Achat achat);
     /*               _
                     /_\

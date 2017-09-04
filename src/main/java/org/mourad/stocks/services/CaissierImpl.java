@@ -75,7 +75,9 @@ public class CaissierImpl implements ICaissier{
     public Vente ajouterVente(Vente vente) {
         return stockDao.ajouterVente(vente);
     }
-
+    public Page<Object[]> getProduit(Long idProduit, int page, int size){
+        return stockDao.getProduit(idProduit, page, size);
+    }
     /*@Override
     public Achat ajouterAchat(Achat achat) {
         return stockDao.ajouterAchat(achat);

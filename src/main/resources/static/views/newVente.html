@@ -8,63 +8,29 @@
 <div class="container" ng-init="onload()">
     <div class="row pad">
       <input-field col-s6>
-          <label for="employe" ng-hide="vente.employe!='employe'">Employé</label>
-          <select id="employe" ng-options="employe[2] for employe in employes.choices[0].content" class="" ng-change="update(employe[0])" ng-model="vente.employe" ng-init="vente.employe='employe'" material-select watch>
-
-              <!--option ng-repeat="employe in employes.choices[0].content">{{employe[2]}} {{employe[3]}}</option-->
-          </select>
-      </input-field>
-    </div>
-    <div class="row pad">
-      <input-field col-s6>
           <label for="Produit" ng-hide="vente.produit!='Produit'">Produit</label>
-          <select id="Produit" ng-options="produit[2] for produit in produits.choices[0].content" class="" ng-change="updateProduit(produit[0])" ng-model="vente.produit" material-select watch>
+          <select id="Produit" ng-options="produit[2] for produit in produits.choices[1].content" class="" ng-change="updateProduit(produit[0])" ng-model="vente.produit" material-select watch>
               <!--option>Produit</option>
               <option ng-repeat="produit in produits.choices[0].content">{{produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{produit[3]}}]</option-->
           </select>
       </input-field>
     </div>
     <div class="row pad">
-      <label for="input_starttime">Heure</label>
-    <input ng-model="time" id="input_starttime" input-clock data-twelvehour="false" type="text">
+      <input-field col-s6>
+          <label for="Client" ng-hide="vente.client!='Client'">Client</label>
+          <select id="Client" ng-options="client[2] for client in clients.choices[1].content" class="" ng-change="update(client[0])" ng-model="vente.client" ng-init="vente.client='Client'" material-select watch>
+
+              <!--option ng-repeat="client in clients.choices[0].content">{{client[2]}} {{client[3]}}</option-->
+          </select>
+      </input-field>
     </div>
-    <div class="row pad">
-      <label for="inputCreated">Date</label>
-  <input input-date
-      ng-model="date"
-      type="text"
-      name="created"
-      id="inputCreated"
-      ng-model="currentTime"
-      container=""
-      format="yyyy-mm-dd"
-      months-full="{{ month }}"
-      months-short="{{ monthShort }}"
-      weekdays-full="{{ weekdaysFull }}"
-      weekdays-short="{{ weekdaysShort }}"
-      weekdays-letter="{{ weekdaysLetter }}"
-      disable="disable"
-      min="{{ minDate }}"
-      max="{{ maxDate }}"
-      today="today"
-      first-day="1"
-      clear="clear"
-      close="close"
-      select-years="15"
-      on-start="onStart()"
-      on-render="onRender()"
-      on-open="onOpen()"
-      on-close="onClose()"
-      on-set="onSet()"
-      on-stop="onStop()" />
-    </div>
-    <div class="row input-field" ng-controller="AutocompleteController">
+    <!--div class="row input-field" ng-controller="AutocompleteController">
       <input type="text" name="produit" id="produit" ng-model="product" ng-keyup="complete(product)" class="valid" ng-change="reset()" required />
       <label>Produit</label>
       <ul ng-model="hideThis" ng-hide="hideThis" class="autocomplete-content dropdown-content">
-        <li ng-repeat="productdata in filterProduct" ng-click="fillTextbox(productdata)" class="highlight collection-item"><span class="left-align">{{productdata}}</span></li>
+        <li ng-repeat="productdata in filterProduct track by $index" value="{{$index}}" ng-click="fillTextbox(productdata)" class="highlight collection-item"><span class="left-align">{{productdata}}</span></li>
       </ul>
-    </div>
+    </div-->
   </input-field>
   <!-- Modal Trigger -->
   <div class="col pad">
@@ -77,9 +43,9 @@
             <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
           </div>
           <div class="row">
-                  <p class="left-align">Employe:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{vente.employe[2]}}&nbsp&nbsp{{vente.employe[3]}}</p>
-                  <p class="left-align">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{vente.produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{vente.produit[3]}}]</p>
-                  <p class="left-align">Date de vente&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{date}} {{time}}</p>
+                  <p class="left-align">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{vente.produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{vente.produit[3]}}]</p>
+                  <p class="left-align">Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{vente.client[2]}}&nbsp&nbsp&nbsp&nbsp{{vente.client[3]}}</p>
+                  <p class="left-align">Prix:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{vente.produit[4]}}&nbsp&nbsp FCFA</p>
           </div>
       </div>
       <div class="modal-footer">

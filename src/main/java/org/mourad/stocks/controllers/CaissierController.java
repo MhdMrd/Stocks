@@ -24,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Mourad<mohammadabdoulahi@gmail.com>
  */
+@Transactional
 @RestController
 public class CaissierController {
     @Autowired
@@ -178,6 +180,14 @@ public class CaissierController {
             )
     public Vente ajouterVente(@RequestBody @Valid Vente vente){
         return (vente.getIdVente()==null)? caissier.ajouterVente(vente):null;
+    }
+    
+    @Secured(value = {"ROLE_Caissier", "ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(value = "/stocks/get/produit/{idProduit}",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET)
+    public @ResponseBody Page<Object[]> getProduit(@PathVariable Long idProduit){
+        return caissier.getProduit(idProduit, 0, 10);
     }
     
     /*@Secured(value = {"ROLE_Caissier", "ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})

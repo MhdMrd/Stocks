@@ -6,33 +6,25 @@
 <title>Modification d'une vente</title>
 <h3 class="header center">Modification d'une vente&nbsp&nbsp <i class="fa fa-pencil-square-o"></i></h3>
 <div class="container" ng-init="onload()">
-    <div class="row">
+    <div class="row pad">
       <input-field col-s6>
-          <label for="employe" ng-hide="hide">{{selectedItem.content[0][1]}} {{selectedItem.content[0][2]}}</label>
-          <select id="employe" ng-options="employe[2] for employe in employes.choices[0].content" class="" ng-change="update(employe[0])" ng-model="venteToUpdate.employe" material-select watch>
-
-              <!--option ng-repeat="employe in employes.choices[0].content">{{employe[2]}} {{employe[3]}}</option-->
+          <label for="Produit" ng-hide="hideProduit">{{selectedItem.content[0][3]}}</label>
+          <select id="Produit" ng-options="produit[2] for produit in produits.choices[1].content track by produit[0]" class="" ng-change="updateProduit(produit[0])" ng-model="selectedItem.content[0][3]" material-select watch>
           </select>
       </input-field>
     </div>
     <div class="row pad">
       <input-field col-s6>
-          <label for="Produit" ng-hide="hideProduit">{{selectedItem.content[0][3]}}</label>
-          <select id="Produit" ng-options="produit[2] for produit in produits.choices[0].content track by produit[0]" class="" ng-change="updateProduit(produit[0])" ng-model="venteToUpdate.produit.idProduit" material-select watch>
-              <!--option>Produit</option>
-              <option ng-repeat="produit in produits.choices[0].content">{{produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{produit[3]}}]</option-->
+          <label for="Client" ng-hide="hideClient">{{selectedItem.content[0][8]}}&nbsp&nbsp&nbsp{{selectedItem.content[0][9]}}</label>
+          <select id="Client" ng-options="client[2] for client in clients.choices[1].content track by client[0]" class="" ng-change="updateClient(produit[0])" ng-model="venteToUpdate.client.idClient" material-select watch>
           </select>
       </input-field>
     </div>
     <div class="row pad">
       <input-field col-s6>
           <label for="etat" ng-hide="hideEtat">{{selectedItem.content[0][6]}}</label>
-          <select id="etat" class="" ng-change="updateEtat(etat)" ng-model="venteToUpdate.etat" material-select watch>
-              <!--option ng-model="selectedItem.content[0][6]">Effectuee</option>
-              <option ng-model="selectedItem.content[0][6]">En_attente</option-->
-
+          <select id="etat" class="" ng-change="updateEtat(etat)" ng-model="selectedItem.content[0][6]" material-select watch>
               <option ng-repeat="etat in etats">{{etat}}</option>
-              <!--option ng-repeat="employe in employes.choices[0].content">{{employe[2]}} {{employe[3]}}</option-->
           </select>
       </input-field>
     </div>
@@ -47,12 +39,12 @@
             <h5>Est-ce bien les informations que vous voulez mettre à jour?</h5>
           </div>
           <div class="row">
-                  <p class="left-align" ng-if="!hide">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
-                  <p class="left-align" ng-if="hide">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{venteToUpdate.employe[2]}}&nbsp&nbsp{{venteToUpdate.employe[3]}}</p>
-                  <p class="left-align" ng-if="!hideProduit">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp-&nbsp&nbsp[{{selectedItem.content[0][4]}}]</p>
-                  <p class="left-align" ng-if="hideProduit">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{venteToUpdate.produit[2]}}&nbsp&nbsp-&nbsp&nbsp[{{venteToUpdate.produit[3]}}]</p>
-                  <p class="left-align" ng-if="!hideEtat">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
-                  <p class="left-align" ng-if="hideEtat">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{venteToUpdate.etat}}</p>
+                  <p class="left-align" ng-if="!hideClient">Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}&nbsp&nbsp{{selectedItem.content[0][9]}}</p>
+                  <p class="left-align" ng-if="hideClient">Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{venteToUpdate.client.idClient[2]}}&nbsp&nbsp{{venteToUpdate.client.idClient[3]}}</p>
+                  <p class="left-align" ng-if="!hideProduit">Produit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp-&nbsp&nbsp[{{selectedItem.content[0][4]}}]</p>
+                  <p class="left-align" ng-if="hideProduit">&nbspProduit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3][2]}}&nbsp&nbsp-&nbsp&nbsp[{{selectedItem.content[0][3][3]}}]</p>
+                  <p class="left-align" ng-if="!hideEtat">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
+                  <p class="left-align" ng-if="hideEtat">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
           </div>
       </div>
       <div class="modal-footer">

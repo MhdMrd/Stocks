@@ -107,7 +107,11 @@ public class StockImpl implements IStockDao{
     public Vente ajouterVente(Vente vente) {
         return venteRepository.save(vente);
     }
-
+    
+    @Override
+    public Page<Object[]> getProduit(Long idProduit, int page, int size){
+        return produitRepository.getProduit(idProduit, new PageRequest(page, size));
+    };
     /*@Override
     public Achat ajouterAchat(Achat achat) {
         return achatRepository.save(achat);
@@ -156,7 +160,8 @@ public class StockImpl implements IStockDao{
     @Override
     public Vente modifierVente(Vente vente, Long id) {
         vente.setIdVente(id);
-        return venteRepository.save(vente);
+        venteRepository.save(vente);
+        return null;
     }
 
     @Override
@@ -183,7 +188,8 @@ public class StockImpl implements IStockDao{
     @Override
     public Produit modifierProduit(Produit produit, Long idProduit) {
         produit.setIdProduit(idProduit);
-        return produitRepository.save(produit);
+        Produit p = produitRepository.save(produit);
+        return null;
     }
 
     @Override

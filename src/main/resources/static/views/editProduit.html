@@ -1,0 +1,80 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<title>Modification d'un produit</title>
+<h3 class="header center">Modification d'un produit&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container" ng-init="onload()">
+      <input-field col-s6>
+          <label for="Categorie" ng-hide="hideCategorie">{{selectedItem.content[0][3]}}</label>
+          <select id="Categorie" ng-options="categorie[1] for categorie in categories.choices[1].content" class="tooltipped" data-position="top" data-delay="50" data-tooltip="I am a tooltip" ng-change="updateCategorie(categorie[0])" ng-model="selectedItem.content[0][3]" material-select watch>
+          </select>
+      </input-field>
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][1]" length="50" class="validate pad" required>
+    <label>Désignation</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="selectedItem.content[0][2]" length="50" class="validate pad" required>
+    <label>Numéro de série</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="selectedItem.content[0][4]" length="50" class="validate pad" required>
+    <label>Prix en temps normal</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="selectedItem.content[0][5]" length="50" class="validate pad" required>
+    <label>Prix en temps de promo</label>
+  </input-field>
+  <input-field col-s6>
+    <label for="situation">{{selectedItem.content[0][9]}}</label>
+    <select id="situation" class="" ng-change="updateSituation(situation)" ng-model="selectedItem.content[0][9]" material-select watch>
+        <option>Disponible</option>
+        <option>Vendu</option>
+    </select>
+  </input-field>
+  <input-field col-s6>
+    <label for="situation">{{selectedItem.content[0][6]}}</label>
+    <select id="etat" class="" ng-change="updateEtat(etat)" ng-model="selectedItem.content[0][6]" material-select watch>
+        <option selected="true">Bon</option>
+        <option>Moyen</option>
+        <option>Mauvais</option>
+    </select>
+  </input-field>
+<input-field>
+    <textarea  ng-model="selectedItem.content[0][7]" class="materialize-textarea" class="validate pad" required></textarea>
+    <label>Remarque</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Modifier <i class="fa fa-pencil right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez mettre à jour?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align" ng-hide="hideCategorie">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
+                <p class="left-align" ng-hide="!hideCategorie">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3][1]}}</p>
+                <p class="left-align">Désignation:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
+                <p class="left-align">Numéro de série:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
+                
+                <p class="left-align">Prix en temps normal:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
+                <p class="left-align">Prix en temps de promo:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}</p>
+                <p class="left-align">Situation:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][9]}}</p>
+                <p class="left-align">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
+                <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7]}}</p>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a ng-href="#/stocks/listes/produits?page=0&size=10" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(produit)">Oui</a>
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(produit)">Non</a>
+    </div>
+</div>
+</div>

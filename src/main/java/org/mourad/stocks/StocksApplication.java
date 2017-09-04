@@ -67,21 +67,21 @@ public class StocksApplication implements CommandLineRunner{
         Categorie sim  = stockDao.ajouterCategorie(new Categorie("SIM IMPL", 50));
         sim.setIdCategorie(sim.getIdCategorie());
         //Produit p=new Produit("12845Ab IMPL","WiFi",5,50,60 Etats.Bon, Situation.Disponible,c);
-        Produit p = new Produit("12845Ab IMPL", "Wifi", 5, 50, 20, Etats.Bon, Situation.Disponible, "RAS", c);
+        Produit p = new Produit("12845Ab IMPL", "Wifi", 50, 20, Etats.Bon, Situation.Disponible, "RAS", c);
         produitRepository.save(p);
-        Produit p1=new Produit("12915Ab", "WiFi haut Débit", 5, 50, 20, Etats.Bon, Situation.Disponible, numSerie, c);
+        Produit p1=new Produit("12915Ab", "WiFi haut Débit", 50, 20, Etats.Bon, Situation.Disponible, numSerie, c);
         
         produitRepository.save(p1);
-        Produit p2=new Produit("GSGS85SD", "Camtel CT", 5, 50, 20, Etats.Bon, Situation.Disponible, numSerie, s);
+        Produit p2=new Produit("GSGS85SD", "Camtel CT",50, 20, Etats.Bon, Situation.Disponible, numSerie, s);
         
         produitRepository.save(p2);
-        Produit p3=new Produit(numSerie+"OJ", "CT Phone", 5, 50, 20, Etats.Bon, Situation.Disponible, numSerie, s);
+        Produit p3=new Produit(numSerie+"OJ", "CT Phone",50, 20, Etats.Bon, Situation.Disponible, numSerie, s);
         
         produitRepository.save(p3);
-        p=new Produit("IMPL98", "SIM GSM", 5, 50, 20, Etats.Bon, Situation.Disponible, numSerie, sim);
+        p=new Produit("IMPL98", "SIM GSM", 50, 20, Etats.Bon, Situation.Disponible, numSerie, sim);
         
         stockDao.ajouterProduit(p);
-        p=new Produit("IMPL54GJ", "SIM 3G", 5, 50, 20, Etats.Bon, Situation.Disponible, numSerie, sim);
+        p=new Produit("IMPL54GJ", "SIM 3G", 50, 20, Etats.Bon, Situation.Disponible, numSerie, sim);
         
         stockDao.ajouterProduit(p);
         Employe ep = new Employe("IMPL EMP 01", "Mourad", "Mohammad", "Caissier");
@@ -119,12 +119,12 @@ public class StocksApplication implements CommandLineRunner{
         Md5PasswordEncoder md = new Md5PasswordEncoder();
         User u =stockDao.ajouterUser(new User("Yuri", md.encodePassword("11121998", ""), ep3));
         User u1 = stockDao.ajouterUser(new User("Yod", md.encodePassword("11121998", ""), ep2));
-        User u2 = stockDao.ajouterUser(new User("M", md.encodePassword("11121998", ""), ep));
+        User u2 = stockDao.ajouterUser(new User("Mourad", md.encodePassword("Camtel@2017", ""), ep));
         
-        Role r = stockDao.ajouterRole(new Role("Caissier", u));
-        Role r1 = stockDao.ajouterRole(new Role("CA", u1));
+        Role r = stockDao.ajouterRole(new Role("Caissier", u2));
+        Role r1 = stockDao.ajouterRole(new Role("CA", u2));
         Role r2 = stockDao.ajouterRole(new Role("ChefAgence", u2));
-        Role r3 = stockDao.ajouterRole(new Role("Boss", u1));
-        Role r4 = stockDao.ajouterRole(new Role("Admin", u));
+        Role r3 = stockDao.ajouterRole(new Role("Boss", u2));
+        Role r4 = stockDao.ajouterRole(new Role("Admin", u2));
     }
 }

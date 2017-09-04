@@ -37,8 +37,8 @@ public class Produit implements Serializable{
     private String numSerie;
     @Column(nullable = false)
     private String designation;
-    @Column(nullable = false)
-    private int seuil;
+    /*@Column(nullable = false)
+    private int seuil;*/
     @Column(nullable = false)
     private int prixNormal;
     @Column(nullable = false)
@@ -58,10 +58,9 @@ public class Produit implements Serializable{
     public Produit() {
     }
 
-    public Produit(String numSerie, String designation, int seuil, int prixNormal, int prixPromotionel, Etats etat, Situation situation, String remarque, Categorie categorie) {
+    public Produit(String numSerie, String designation, int prixNormal, int prixPromotionel, Etats etat, Situation situation, String remarque, Categorie categorie) {
         this.numSerie = numSerie;
         this.designation = designation;
-        this.seuil = seuil;
         this.prixNormal = prixNormal;
         this.prixPromotionel = prixPromotionel;
         this.etat = etat;
@@ -100,14 +99,6 @@ public class Produit implements Serializable{
 
     public void setDesignation(String designation) {
         this.designation = designation;
-    }
-
-    public int getSeuil() {
-        return seuil;
-    }
-
-    public void setSeuil(int seuil) {
-        this.seuil = seuil;
     }
 
     public int getPrixNormal() {

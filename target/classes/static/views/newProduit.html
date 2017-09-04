@@ -1,0 +1,71 @@
+<!--
+    Mourad<mohammadabdoulahi@gmail.com>
+-->
+<meta charset="UTF-8">
+<title>Nouveau produit</title>
+<h3 class="header center">Nouveau produit&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container" ng-init="onload()">
+      <input-field col-s6>
+          <label for="Categorie" ng-hide="hideCategorie">Catégorie</label>
+          <select id="Categorie" ng-options="categorie[1] for categorie in categories.choices[1].content" class="" ng-change="updateCategorie(categorie[0])" ng-model="produit.categorie" material-select watch>
+          </select>
+      </input-field>
+  <input-field>
+    <input type="text" ng-model="produit.designation" length="50" class="validate pad" required>
+    <label>Désignation</label>
+  </input-field>
+  <input-field>
+    <input type="text" ng-model="produit.numSerie" length="50" class="validate pad" required>
+    <label>Numéro de série</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="produit.prixNormal" length="50" class="validate pad" required>
+    <label>Prix en temps normal</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="produit.prixPromotionel" length="50" class="validate pad" required>
+    <label>Prix en temps de promo</label>
+  </input-field>
+  <input-field col-s6>
+    <label for="etat" ng-hide="produit.etat!='Etat'">Etat</label>
+    <select id="etat" class="" ng-change="updateEtat(etat)" ng-model="produit.etat" material-select watch>
+        <option selected="true">Bon</option>
+        <option>Moyen</option>
+        <option>Mauvais</option>
+    </select>
+  </input-field>
+<input-field>
+    <textarea  ng-model="produit.remarque" class="materialize-textarea" class="validate pad" required></textarea>
+    <label>Remarque</label>
+</input-field>
+<!-- Modal Trigger -->
+<div class="col">
+    <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+    <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+</div>
+<!-- Modal Structure -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content center">
+        <div class="title">
+          <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+        </div>
+        <div class="row">
+                <p class="left-align" >Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.categorie[1]}}</p>
+                <p class="left-align">Désignation:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.designation}}</p>
+                <p class="left-align">Numéro de série:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.numSerie}}</p>
+                
+                <p class="left-align">Prix en temps normal:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.prixNormal}}&nbsp&nbspFCFA</p>
+                <p class="left-align">Prix en temps de promo:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.prixPromotionel}}&nbsp&nbspFCFA</p>
+                <p class="left-align">Etat:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.etat}}</p>
+                <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{produit.remarque}}</p>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a ng-href="#/stocks/listes/produits?page=0&size=10" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(produit)">Oui</a>
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(produit)">Non</a>
+    </div>
+</div>
+</div>

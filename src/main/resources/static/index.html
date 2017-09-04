@@ -33,12 +33,14 @@
     <script type="text/javascript" src="js/controllers/employeControllers.js"></script>
     <script type="text/javascript" src="js/controllers/achatControllers.js"></script>
     <script type="text/javascript" src="js/controllers/venteControllers.js"></script>
+    <script type="text/javascript" src="js/controllers/produitControllers.js"></script>
     <!--Factories-->
     <script type="text/javascript" src="js/factories/CategorieService.js"></script>
     <script type="text/javascript" src="js/factories/ClientService.js"></script>
     <script type="text/javascript" src="js/factories/EmployeService.js"></script>
     <script type="text/javascript" src="js/factories/AchatService.js"></script>
-    <script type="text/javascript" src="js/factories/VenteSerice.js"></script>
+    <script type="text/javascript" src="js/factories/VenteService.js"></script>
+    <script type="text/javascript" src="js/factories/ProduitService.js"></script>
 
     
       <div class="parallax-container" ng-if="!home">
@@ -208,12 +210,14 @@
       </div>
   </body>
   <script type="text/javascript">
+  var employeAuth = null;
   stocksApp
   .controller("indexController", ["$scope", "$http", function ($scope, $http) {
     $scope.username = "";
-    $http.get("http://localhost:8080/getUserAuthenticated").then(successCallback, errorCallback);
+    $http.get("/getUserAuthenticated").then(successCallback, errorCallback);
     function successCallback(response){
       $scope.username = response.data.content[0][1];
+      employeAuth = response.data.content[0][5];
     };
     function errorCallback(error){
       console.log(error);

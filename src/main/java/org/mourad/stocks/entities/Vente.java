@@ -41,7 +41,7 @@ public class Vente implements Serializable{
     @JoinColumn(name = "produit", unique = true)
     private Produit produit;
     @ManyToOne
-    @JoinColumn(name = "client", unique = true)
+    @JoinColumn(name = "client")
     private Client client;
     private Date dateVente;
     @Enumerated(EnumType.STRING)

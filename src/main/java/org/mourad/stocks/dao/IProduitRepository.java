@@ -22,6 +22,8 @@ import org.springframework.data.repository.query.Param;
 public interface IProduitRepository extends JpaRepository<Produit, Long>{
     @Query("SELECT p FROM Produit p, Vente v WHERE p.numSerie=v.produit AND (v.produit IN :x)")
     public Page<Produit> listeProduitsParNumSerie(@Param("x")Collection<Vente> ventes, Pageable pageable);
-    @Query("SELECT p.idProduit, p.numSerie, p.designation, p.categorie.nom, p.prixNormal, p.prixPromotionel FROM Produit p WHERE p.situation=:x")
+    @Query("SELECT p.idProduit, p.numSerie, p.designation, p.categorie.nom, p.prixNormal, p.prixPromotionel, p.etat, p.remarque FROM Produit p WHERE p.situation=:x")
     public Page<Object[]> findBySituation(@Param("x") Situation situation, Pageable pageable);
+    @Query("SELECT p.idProduit, p.numSerie, p.designation, p.categorie.nom, p.prixNormal, p.prixPromotionel, p.etat, p.remarque, p.categorie.idCategorie, p.situation FROM Produit p WHERE p.idProduit=:x")
+    public Page<Object[]> getProduit(@Param("x") Long idProduit, Pageable pageable);
 }
