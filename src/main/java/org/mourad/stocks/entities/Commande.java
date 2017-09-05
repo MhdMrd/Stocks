@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(
-        uniqueConstraints = @UniqueConstraint(columnNames = {"employe", "categorie", "dateCommande"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"employeEmetteur", "categorie", "dateCommande"})
 )
 public class Commande implements Serializable {
     @Id
@@ -39,8 +39,11 @@ public class Commande implements Serializable {
     @Column(nullable = false)
     private Date dateCommande;
     @ManyToOne
-    @JoinColumn(name = "employe")
-    private Employe employe;
+    @JoinColumn(name = "employeEmetteur")
+    private Employe employeEmetteur;
+    @ManyToOne
+    @JoinColumn(name = "employeApprouveur")
+    private Employe employeApprouveur;
     @ManyToOne
     @JoinColumn(name = "categorie")
     private Categorie categorie;
@@ -54,7 +57,18 @@ public class Commande implements Serializable {
         this.quantiteACommander = quantiteACommander;
         this.observations = observations;
         this.dateCommande = dateCommande;
-        this.employe = employe;
+        this.employeEmetteur = employe;
+        this.categorie = categorie;
+    }
+
+    public Commande(String reference, int quantiteRestante, int quantiteACommander, String observations, Date dateCommande, Employe employeEmetteur, Employe employeApprouveur, Categorie categorie) {
+        this.reference = reference;
+        this.quantiteRestante = quantiteRestante;
+        this.quantiteACommander = quantiteACommander;
+        this.observations = observations;
+        this.dateCommande = dateCommande;
+        this.employeEmetteur = employeEmetteur;
+        this.employeApprouveur = employeApprouveur;
         this.categorie = categorie;
     }
 
@@ -66,12 +80,28 @@ public class Commande implements Serializable {
         this.idCommande = idCommande;
     }
     
-    public Employe getEmploye() {
-        return employe;
+    public Employe getEmployeEmetteur() {
+        return employeEmetteur;
     }
 
-    public void setEmploye(Employe employe) {
-        this.employe = employe;
+    public void setEmployeEmetteur(Employe employe) {
+        this.employeEmetteur = employe;
+    }
+
+    public Date getDateCommande() {
+        return dateCommande;
+    }
+
+    public void setDateCommande(Date dateCommande) {
+        this.dateCommande = dateCommande;
+    }
+
+    public Employe getEmployeApprouveur() {
+        return employeApprouveur;
+    }
+
+    public void setEmployeApprouveur(Employe employeApprouveur) {
+        this.employeApprouveur = employeApprouveur;
     }
 
     public Categorie getCategorie() {
@@ -113,7 +143,5 @@ public class Commande implements Serializable {
     public void setObservations(String observations) {
         this.observations = observations;
     }
-    
-    
     
 }

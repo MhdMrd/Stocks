@@ -84,6 +84,14 @@ public class ACController {
         AC.supprimerCommande(idCommande);
     }
     
+    @Secured(value = {"ROLE_Caissier", "ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(value = "/stocks/get/commande/{idCommande}",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET)
+    public @ResponseBody Page<Object[]> getVente(@PathVariable Long idCommande){
+        return AC.getCommande(idCommande, 0,15);
+    }
+    
     /*@Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
     @RequestMapping(
             value = "/stocks/listes/achats",

@@ -40,6 +40,7 @@ public interface IStockDao {
     public Commande ajouterCommande(Commande commande);
     public Commande modifierCommande(Commande commande, Long idCommande);
     public void supprimerCommande(Long idCommande);
+    public Page<Object[]> getCommande(Long idCommande, int page, int size);
     //public Page<Object[]> findAllAchats(int page, int size);
     public Page<Object[]> listeVentes(int page, int size);
     public Page<Object[]> listeVentesEnAttente(int page, int size);

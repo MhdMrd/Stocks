@@ -36,8 +36,10 @@ public class Employe implements Serializable{
     private String poste;
     @OneToOne(mappedBy = "employe")
     private User user;
-    @OneToMany(mappedBy = "employe")
+    @OneToMany(mappedBy = "employeEmetteur")
     private Collection<Commande> commandes;
+    @OneToMany(mappedBy = "employeApprouveur")
+    private Collection<Commande> commandesApprouvees;
     @OneToMany(mappedBy = "employe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Vente> ventes;
     //private User pseudo;

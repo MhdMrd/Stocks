@@ -53,7 +53,11 @@ public class ACImpl implements IAC{
     public void supprimerCommande(Long idCommande) {
         stockDao.supprimerCommande(idCommande);
     }
-
+    
+    @Override
+    public Page<Object[]> getCommande(Long idCommande, int page, int size){
+        return stockDao.getCommande(idCommande, page, size);
+    }
     @Override
     public Page<Object[]> listeVentes(int page, int size) {
         return stockDao.listeVentes(page, size);

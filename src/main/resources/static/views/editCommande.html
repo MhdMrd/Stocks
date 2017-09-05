@@ -1,0 +1,52 @@
+  <!--
+      Mourad<mohammadabdoulahi@gmail.com>
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modification d'une commande</title>
+  <h3 class="header center">Modification d'une commande&nbsp&nbsp <i class="fa fa-pencil-square-o"></i></h3>
+  <div class="container" ng-init="onload()">
+      <div class="row pad">
+        <input-field col-s6>
+            <label for="Categorie" ng-hide="hideCategorie">{{selectedItem.content[0][2]}}</label>
+            <select id="Categorie" ng-options="categorie[1] for categorie in categories.choices[1].content track by categorie[0]" class="" ng-change="updateCategorie(categorie[0])" ng-model="selectedItem.content[0][2]" material-select watch>
+            </select>
+        </input-field>
+      </div>
+      <div class="row pad">
+        <input-field>
+          <input type="number" ng-model="selectedItem.content[0][6]" length="50" class="validate">
+          <label>Quantité à commander</label>
+        </input-field>
+      </div>
+      <div class="row pad">
+        <input-field>
+          <input type="text" ng-model="selectedItem.content[0][8]" length="50" class="validate">
+          <label>Observations</label>
+        </input-field>
+      </div>
+      
+
+    <!-- Modal Trigger -->
+    <div class="col pad">
+        <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Modifier <i class="fa fa-pencil right"></i></a>
+        <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+    </div>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content center">
+            <div class="title">
+              <h5>Est-ce bien les informations que vous voulez mettre à jour?</h5>
+            </div>
+            <div class="row">
+                    <p class="left-align" ng-if="!hideCategorie">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}
+                    <p class="left-align" ng-if="hideCategorie">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2][1]}}
+                    <p class="left-align">Quantité à commander:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
+                    <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#/stocks/listes/commandes" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(commande)">Oui</a>
+            <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="edit(commande)">Non</a>
+        </div>
+    </div>
+  </div>

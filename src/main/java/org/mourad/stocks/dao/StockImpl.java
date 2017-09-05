@@ -262,14 +262,19 @@ public class StockImpl implements IStockDao{
     @Override
     public Commande modifierCommande(Commande commande, Long idCommande) {
         commande.setIdCommande(idCommande);
-        return commandeRepository.save(commande);
+        commandeRepository.save(commande);
+        return null;
     }
 
     @Override
     public void supprimerCommande(Long idCommande) {
         commandeRepository.deleteById(idCommande);
     }
-
+    
+    @Override
+    public Page<Object[]> getCommande(Long idCommande, int page, int size){
+        return commandeRepository.getCommande(idCommande, new PageRequest(page, size));
+    }
     @Override
     public Bilan ajouterBilan(Bilan bilan) {
         return bilanRepository.save(bilan);

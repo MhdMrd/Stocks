@@ -34,6 +34,10 @@ function stateConfig($routeProvider, $locationProvider) {
       templateUrl:"views/newProduit.html",
       controller:"newProduitController"
     })
+    .when("/stocks/add/commande", {
+      templateUrl:"views/newCommande.html",
+      controller:"newCommandeController"
+    })
     //EDIT controllers
     .when("/stocks/edit/categorie/:idCategorie", {
       templateUrl:"views/editCategorie.html",
@@ -59,6 +63,10 @@ function stateConfig($routeProvider, $locationProvider) {
       templateUrl:"views/editProduit.html",
       controller:"newProduitController"
     })
+    .when("/stocks/edit/commande/:idCommande", {
+      templateUrl:"views/editCommande.html",
+      controller:"newCommandeController"
+    })
     //LIST controllers
     .when("/stocks/listes/categories", {
       templateUrl:"views/listCategories.html",
@@ -83,5 +91,9 @@ function stateConfig($routeProvider, $locationProvider) {
     .when("/stocks/listes/produits", {
       templateUrl:"views/listProduits.html",
       controller:"newProduitController"
+    })
+    .when("/stocks/listes/commandes", {
+      templateUrl:"views/listeCommandes.html",
+      controller:"newCommandeController"
     });
 }

@@ -1,0 +1,61 @@
+  <!--
+      Mourad<mohammadabdoulahi@gmail.com>
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouvelle commande</title>
+  <h3 class="header center">Nouvelle commande&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+  <div class="container" ng-init="onload()">
+      <div class="row pad">
+        <input-field col-s6>
+            <label for="Categorie" ng-hide="commande.categorie!='Categorie'">Catégorie</label>
+            <select id="Categorie" ng-options="categorie[1] for categorie in categories.choices[1].content" class="" ng-change="updateCategorie(categorie[0])" ng-model="commande.categorie" material-select watch>
+                <!--option>categorie</option>
+                <option ng-repeat="categorie in categories.choices[0].content">{{categorie[2]}}&nbsp&nbsp-&nbsp&nbsp[{{categorie[3]}}]</option-->
+            </select>
+        </input-field>
+      </div>
+      <div class="row pad">
+        <input-field>
+          <input type="number" ng-model="commande.quantiteACommander" length="50" class="validate pad" required>
+          <label>Quantité à commander</label>
+        </input-field>
+      </div>
+      <div class="row pad">
+        <input-field>
+          <textarea  ng-model="commande.observations" class="materialize-textarea" class="validate pad" required></textarea>
+          <label>Observations</label>
+        </input-field>
+      </div>
+        
+    
+      <!--div class="row input-field" ng-controller="AutocompleteController">
+        <input type="text" name="categorie" id="categorie" ng-model="product" ng-keyup="complete(product)" class="valid" ng-change="reset()" required />
+        <label>categorie</label>
+        <ul ng-model="hideThis" ng-hide="hideThis" class="autocomplete-content dropdown-content">
+          <li ng-repeat="productdata in filterProduct track by $index" value="{{$index}}" ng-click="fillTextbox(productdata)" class="highlight collection-item"><span class="left-align">{{productdata}}</span></li>
+        </ul>
+      </div>
+    </input-field-->
+    <!-- Modal Trigger -->
+    <div class="col pad">
+        <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+        <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+    </div>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content center">
+            <div class="title">
+              <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+            </div>
+            <div class="row">
+                    <p class="left-align">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.categorie[1]}}</p>
+                    <p class="left-align">Quantité à commander:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.quantiteACommander}}</p>
+                    <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.observations}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#/stocks/listes/commandes" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(employe)">Oui</a>
+            <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="reset()">Non</a>
+        </div>
+    </div>
+  </div>
