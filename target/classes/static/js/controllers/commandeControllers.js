@@ -12,7 +12,7 @@
         $scope.idC =0;
         $scope.totalPages = null;
         $scope.page=0;
-        $scope.total = null;
+        $scope.total = 0;
         $scope.commandeToUpdate={
           "idCommande":null,
           "employeEmetteur":{
@@ -200,10 +200,120 @@
           $scope.currentClient.idClient = $scope.commandeToUpdate.client.idClient[0];
         }
         $scope.gotoPage = function(page){
+          if (page>=0) {
             $scope.page = page;
             $scope.getListe();
+          }
         }
 
+        $scope.pdf= function () {
+          
+          var docDefinition = {
+            
+            content: [
+              
+              {
+                alignment: 'center',
+                columns: [
+                  {
+                    style:'header',
+                    width:200,
+                    text: 'Réplubique du Cameroun\n     *********     \nCameroon Telecommunications\n     *********     \nReprésentation Régionale Extrême-Nord\n     *********     \nAgence de Maroua\n     *********     \nService AC'
+                  },
+                  {
+                    style:'header',
+                    width:350,
+                    text: 'Réplubique du Cameroun\n     *********     \nCameroon Telecommunications\n     *********     \nReprésentation Régionale Extrême-\nNord\n     *********     \nAgence de Maroua\n     *********     \nService AC'
+                  },
+                ]
+              },
+              '\n\n\n',
+              {
+                alignment:'center',
+                bold:true,
+                fontSize:18,
+                'text':'Commande'
+              },
+              '\n\n\n',
+              {
+                style: 'tableExample',
+                table: {
+                  widths: [50, '*', 50, 70, '*'],
+                  headerRows: 1,
+                  // dontBreakRows: true,
+                  // keepWithHeaderRows: 1,
+                  body: [
+
+                    [{text: 'Numéro', style: 'tableHeader', width:100}, {text: 'Catégorie', style: 'tableHeader', width:150}, {text: 'Restant', style: 'tableHeader', width:100},{text: 'Commandé', style: 'tableHeader', width:100},{text: 'Observations', style: 'tableHeader', width:300}],
+                    [
+                      '1',
+                      ''+$scope.commande.categorie[1],
+                      ''+$scope.restant,
+                      ''+$scope.commande.quantiteACommander,
+                      ''+$scope.commande.observations
+                    ],
+                  ]
+                }
+              },
+              {
+                alignment: 'center',
+                columns: [
+                  {
+                    style:'header',
+                    width:200,
+                    text: 'Le AC'
+                  },
+                  {
+                    style:'header',
+                    width:350,
+                    text: 'Le Chef d\'Agence'
+                  },
+                ]
+              },
+              '\n',
+              {
+                alignment: 'center',
+                columns: [
+                  {
+                    style:'header',
+                    width:200,
+                    text: ''+nomPrenom
+                  },
+                  {
+                    style:'header',
+                    width:350,
+                    text: 'Mohammad Mourad Abdoulahi'
+                  },
+                ]
+              },
+              ],
+              defaultStyle: {
+                columnGap: 20,
+              },
+              styles: {
+              header: {
+              },
+              subheader: {
+                fontSize: 16,
+                bold: true,
+                margin: [0, 10, 0, 5]
+              },
+              tableExample: {
+                margin: [0, 5, 0, 15]
+              },
+              tableHeader: {
+                bold: true,
+                fontSize: 13,
+                color: 'black'
+              }
+            },
+            }
+                    //        pdfMake.createPdf(docDefinition).download('optionalName.pdf');
+                    pdfMake.createPdf(docDefinition).open();
+};
+                
+                
+          
 
         //TimePicker
         var currentTime = new Date();

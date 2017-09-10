@@ -14,12 +14,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Mourad<mohammadabdoulahi@gmail.com>
  */
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = {"annee", "mois"})
+)
 public class Bilan implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +32,7 @@ public class Bilan implements Serializable{
     @ManyToOne
     @JoinColumn(name = "categorie")
     private Categorie categorie;
-    private Month mois;
+    private String mois;
     private String annee;
     private int quantiteDebut;
     private int quantiteFin;
@@ -35,7 +40,7 @@ public class Bilan implements Serializable{
     public Bilan() {
     }
 
-    public Bilan(Categorie categorie, Month mois, String annee, int quantiteDebut, int quantiteFin) {
+    public Bilan(Categorie categorie, String mois, String annee, int quantiteDebut, int quantiteFin) {
         this.categorie = categorie;
         this.mois = mois;
         this.annee = annee;
@@ -59,11 +64,11 @@ public class Bilan implements Serializable{
         this.categorie = categorie;
     }
 
-    public Month getMois() {
+    public String getMois() {
         return mois;
     }
 
-    public void setMois(Month mois) {
+    public void setMois(String mois) {
         this.mois = mois;
     }
 

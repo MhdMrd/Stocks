@@ -38,6 +38,10 @@ function stateConfig($routeProvider, $locationProvider) {
       templateUrl:"views/newCommande.html",
       controller:"newCommandeController"
     })
+    .when("/stocks/add/bilan", {
+      templateUrl:"views/newBilan.html",
+      controller:"newBilanController"
+    })
     //EDIT controllers
     .when("/stocks/edit/categorie/:idCategorie", {
       templateUrl:"views/editCategorie.html",

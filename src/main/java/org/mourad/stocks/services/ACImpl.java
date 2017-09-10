@@ -149,13 +149,13 @@ public class ACImpl implements IAC{
     }
 
     @Override
-    public Bilan genererBilanMensuel(Month month, Year year) {
-        return stockDao.genererBilanMensuel(month, year);
+    public Page<Object[]> genererBilanMensuel(String month, String year, int page, int size) {
+        return stockDao.genererBilanMensuel(month, year, page, size);
     }
 
     @Override
-    public Bilan genererBilanAnnuel(Year year) {
-        return stockDao.genererBilanAnnuel(year);
+    public Page<Object[]> genererBilanAnnuel(String year, int page, int size) {
+        return stockDao.genererBilanAnnuel(year, page, size);
     }
     
 }

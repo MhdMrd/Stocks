@@ -2,8 +2,8 @@ $(document).ready(function(){
     $('.collapsible').collapsible({
         accordion: true
     });
+    $('.tooltipped').tooltip({delay: 50});
     $('.parallax').parallax();
-    $('.tooltipped').tooltip();
     $(".button-collapse").sideNav();
     $('.carousel').carousel();
     $('.slider').slider({
@@ -26,6 +26,5 @@ $(document).ready(function(){
   });
     $('.modal').modal();
 });
-
 //new WOW().init();
     

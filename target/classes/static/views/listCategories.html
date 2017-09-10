@@ -4,6 +4,29 @@
 <meta charset="UTF-8">
 <title>Liste des catégories</title>
 <h3 class="header center">Liste des catégories&nbsp&nbsp <i class="fa fa-list-alt"></i></h3>
+<div style="height: 1px; padding-right: 3%; padding-top: 2%;" class="right">
+          <ul class="section table-of-contents">
+            <li><a href="#stocks/add/categorie">Ajouter catégorie</a></li>
+            <li><a href="" ng-click="updateCommanderB()">Commander</a></li>
+          </ul>
+</div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.tooltipped').tooltip({delay: 50});
+        });
+    </script>
+    </a>
+    <div class="fixed-action-btn" ng-hide="!commander || catsEmpty">
+    <a class="btn-floating btn-large pulse indigo darken-4">
+    <!--i class="fa fa-angle-left"></i-->
+    <i class="fa fa-plus"></i>
+    </a>
+    <ul>
+      <li><a class="btn-floating indigo tooltipped" data-position="left" data-delay="50" data-tooltip="Télécharger le fichier généré" ng-click="updateTelecharger();pdf();generer();"><i class="fa fa-download" onmouseover="$('.tooltipped').tooltip({delay: 50});"></i></a></li>
+      <li><a class="btn-floating indigo darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimer le fichier généré" ng-click="updateImprimer();pdf();generer();"><i class="fa fa-print" onmouseover="$('.tooltipped').tooltip({delay: 50});"></i></a></li>
+      <li><a class="btn-floating indigo darken-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Visualiser le fichier généré" ng-click="updateVisualiser();pdf();generer();"><i class="fa fa-eye" onmouseover="$('.tooltipped').tooltip({delay: 50});"></i></a></li>
+    </ul>
+  </div>
 <div class="container row" ng-init="load()">
   <table class="responsive-table">
     <thead>
@@ -12,15 +35,17 @@
         <td>Quantité disponible</td>
         <td>Quantité défectueuse</td>
         <td>Remarque</td>
+        <td ng-hide="!commander">Commander</td>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="categorie in categories.content">
+      <tr ng-repeat="categorie in categories.content track by $index">
         <td>{{categorie[1]}}</td>
         <td>{{categorie[2]}}</td>
         <td>{{categorie[3]}}</td>
         <td class="truncate">{{categorie[4]}}</td>
-        <td><a href ="" ng-click="details(categorie[0])" class=""data-target="informationsModal" modal>Détails</a></td>
+        <td ng-hide="!commander"><input type="checkbox" class="filled-in check-element animate-show-hide" id="{{$index}}" for="filled-in" ng-click = "passerCommande(categorie[0], $index)" /> <label for="{{$index}}"></label></td>
+        <td><a href ="" ng-click="details(categorie[0])" class="" data-target="informationsModal" modal>Détails</a></td>
         <td><a ng-href="#stocks/edit/categorie/{{categorie[0]}}" class="">Modifier</a></td>
         <td><a href ="" ng-click="details(categorie[0])" class="" data-target="deleteModal" modal>Supprimer</a></td>
       </tr>
@@ -69,4 +94,8 @@
       <a href="#/stocks/listes/categories" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="delete(selectedItem.content[0][0])">Oui</a>
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Non</a>
     </div>
+</div>
+<div class="row">
+  commanderThis:  {{commanderThis}} <br>
+  cats: {{cats}}
 </div>

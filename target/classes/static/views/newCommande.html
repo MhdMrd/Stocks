@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nouvelle commande</title>
   <h3 class="header center">Nouvelle commande&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+  <div style="height: 1px; padding-right: 3%; padding-top: 2%;" class="right">
+          <ul class="section table-of-contents">
+            <li><a href="#stocks/listes/commandes">Liste commandes</a></li>
+          </ul>
+</div>
   <div class="container" ng-init="onload()">
       <div class="row pad">
         <input-field col-s6>
@@ -39,7 +44,7 @@
     </input-field-->
     <!-- Modal Trigger -->
     <div class="col pad">
-        <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+        <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal ng-click="pdf()">Ajouter <i class="fa fa-plus right"></i></a>
         <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
     </div>
     <div id="confirmationModal" class="modal">
@@ -48,13 +53,14 @@
               <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
             </div>
             <div class="row">
-                    <p class="left-align">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.categorie[1]}}</p>
+                    <p class="left-align" ng-if="hideCategorie">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.categorie[1]}}</p>
+                    <p class="left-align" ng-if="!hideCategorie">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
                     <p class="left-align">Quantité à commander:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.quantiteACommander}}</p>
                     <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{commande.observations}}</p>
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#/stocks/listes/commandes" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(employe)">Oui</a>
+            <a href="#/stocks/listes/commandes" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(commande)">Oui</a>
             <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="reset()">Non</a>
         </div>
     </div>

@@ -1,0 +1,74 @@
+  <!--
+      Mourad<mohammadabdoulahi@gmail.com>
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilan annuel</title>
+  <h3 class="header center">Bilan annuel&nbsp&nbsp <i class="fa fa-plus-circle"></i></h3>
+  <div class="container" ng-init="onload()">
+      <div class="row pad">
+      <label for="input_starttime">Heure</label>
+    <input ng-model="time" id="input_starttime" input-clock data-twelvehour="false" type="text">
+    </div>
+    <div class="row pad">
+      <label for="inputCreated">Date</label>
+  <input input-date
+      ng-model="date"
+      type="text"
+      name="created"
+      id="inputCreated"
+      ng-model="currentTime"
+      container=""
+      format="yyyy-mm-dd"
+      months-full="{{ month }}"
+      months-short="{{ monthShort }}"
+      weekdays-full="{{ weekdaysFull }}"
+      weekdays-short="{{ weekdaysShort }}"
+      weekdays-letter="{{ weekdaysLetter }}"
+      disable="disable"
+      min="{{ minDate }}"
+      max="{{ maxDate }}"
+      today="today"
+      first-day="1"
+      clear="clear"
+      close="close"
+      select-years="15"
+      on-start="onStart()"
+      on-render="onRender()"
+      on-open="onOpen()"
+      on-close="onClose()"
+      on-set="onSet()"
+      on-stop="onStop()" />
+    </div>
+        
+    
+      <!--div class="row input-field" ng-controller="AutocompleteController">
+        <input type="text" name="categorie" id="categorie" ng-model="product" ng-keyup="complete(product)" class="valid" ng-change="reset()" required />
+        <label>categorie</label>
+        <ul ng-model="hideThis" ng-hide="hideThis" class="autocomplete-content dropdown-content">
+          <li ng-repeat="productdata in filterProduct track by $index" value="{{$index}}" ng-click="fillTextbox(productdata)" class="highlight collection-item"><span class="left-align">{{productdata}}</span></li>
+        </ul>
+      </div>
+    </input-field-->
+    <!-- Modal Trigger -->
+    <div class="col pad">
+        <a class='btn blue darken-2 waves-effect waves-light' data-target='confirmationModal' modal>Ajouter <i class="fa fa-plus right"></i></a>
+        <button class="btn blue darken-2 waves-effect waves-light" ng-click="reset()">Effacer <i class="fa fa-eraser right"></i></button>
+    </div>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content center">
+            <div class="title">
+              <h5>Est-ce bien les informations que vous voulez ajouter?</h5>
+            </div>
+            <div class="row">
+                    <p class="left-align">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{bilan.categorie[1]}}</p>
+                    <p class="left-align">Quantité à bilanr:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{bilan.quantiteAbilanr}}</p>
+                    <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{bilan.observations}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#/stocks/listes/bilans" class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="save(employe)">Oui</a>
+            <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="reset()">Non</a>
+        </div>
+    </div>
+  </div>

@@ -60,11 +60,11 @@ public class StocksApplication implements CommandLineRunner{
         Client client = stockDao.ajouterClient(new Client("IMPL11DFS", "Mourad", "Mohammad"));
         Client client1 = stockDao.ajouterClient(new Client("IMPL111DFD", "Youssfi", "Hassan"));
         Client client2 = stockDao.ajouterClient(new Client("IMPL111DDS", "Hamza", "Mohammad"));
-        Categorie c = stockDao.ajouterCategorie(new Categorie("Modems IMPL", 50));
+        Categorie c = stockDao.ajouterCategorie(new Categorie("Modems IMPL", 50, 10, "Pour le moment ça va."));
         c.setIdCategorie(c.getIdCategorie());
-        Categorie s = stockDao.ajouterCategorie(new Categorie("Smartphones IMPL", 50));
+        Categorie s = stockDao.ajouterCategorie(new Categorie("Smartphones IMPL", 50, 10, "RAS ici"));
         s.setIdCategorie(s.getIdCategorie());
-        Categorie sim  = stockDao.ajouterCategorie(new Categorie("SIM IMPL", 50));
+        Categorie sim  = stockDao.ajouterCategorie(new Categorie("SIM IMPL", 50, 10, "Ici non plus"));
         sim.setIdCategorie(sim.getIdCategorie());
         //Produit p=new Produit("12845Ab IMPL","WiFi",5,50,60 Etats.Bon, Situation.Disponible,c);
         Produit p = new Produit("12845Ab IMPL", "Wifi", 50, 20, Etats.Bon, Situation.Disponible, "RAS", c);
@@ -106,10 +106,10 @@ public class StocksApplication implements CommandLineRunner{
         Commande com1 = stockDao.ajouterCommande(new Commande("REF IMPL 02", 10, 25, "RAS",new Date(), e1, c));
         Commande com2 = stockDao.ajouterCommande(new Commande("REF IMPL 03", 10, 25, "RAS",new Date(), e1, s));
         
-        Bilan b = stockDao.ajouterBilan(new Bilan(sim, Month.MAY, Year.now().toString(), 15, 12));
+        Bilan b = stockDao.ajouterBilan(new Bilan(sim, Month.MAY.toString(), Year.now().toString(), 15, 12));
         
-        Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.MAY, Year.now().toString(), 15, 12));
-        Bilan b2 = stockDao.ajouterBilan(new Bilan(c, Month.JULY, Year.now().toString(), 15, 12));
+        Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.SEPTEMBER.toString(), Year.now().toString(), 15, 12));
+        Bilan b2 = stockDao.ajouterBilan(new Bilan(c, Month.JULY.toString(), Year.now().toString(), 15, 12));
         System.out.println(b.getAnnee());
         System.out.println("----------------Liste des produits de la catégorie:"+c.getNom()+"----------------");
         /*List<Vente> liste=stockDao.listeVentes();

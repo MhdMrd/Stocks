@@ -91,6 +91,23 @@ a{
 }
 
    
+
+.animate-show-hide.ng-hide {
+  opacity: 0;
+}
+
+.animate-show-hide.ng-hide-add,
+.animate-show-hide.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.check-element {
+  border: 1px solid black;
+  opacity: 1;
+  padding: 10px;
+}
+
+
     /*label focus color */
    .input-field input[type=text], input[type=number]:focus + label {
      color: rgb(25, 118, 210);

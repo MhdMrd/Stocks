@@ -5,12 +5,6 @@
 
 <title>Liste des commandes</title>
 <h3 class="header center">Liste des commandes&nbsp&nbsp <i class="fa fa-list-alt"></i></h3>
-<div style="height: 1px; padding-right: 3%; padding-top: 2%;" class="right">
-          <ul class="section table-of-contents">
-            <li><a href="#stocks/add/commande">Nouvelle commande</a></li>
-            <li><a href="">Valider commandes</a></li>
-          </ul>
-</div>
 <div class="container row" ng-init="load()">
   <table class="responsive-table">
     <thead>
@@ -41,13 +35,12 @@
   </table>
   <div class="row">
     <ul class="pagination">
-        <li ng-class="{disabled:page<=0}"><a ng-click="gotoPage(page-1)" ng-if="total!=0"><i class="fa fa-angle-left"></i></a></li>
+        <li ng-class="{disabled:page<=0}"><a ng-click="gotoPage(page-1)" ng-if="total>0"><i class="fa fa-angle-left"></i></a></li>
         <li ng-class="{active:$index==page}" ng-repeat="p in totalPages track by $index"><a href="" ng-click="gotoPage($index)">{{$index + 1}}</a></li>
         <li ng-class="{disabled:page+1==total}"><a ng-click="gotoPage($index+1)" ng-if="$index+1<total"><i class="fa fa-angle-right"></i></a></li>
     </ul>
   </div>
 </div>
-
 <div id="informationsModal" class="modal">
     <div class="modal-content center">
         <div class="title">

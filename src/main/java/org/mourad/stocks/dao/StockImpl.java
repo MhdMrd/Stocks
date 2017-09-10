@@ -219,13 +219,13 @@ public class StockImpl implements IStockDao{
     }
 
     @Override
-    public Bilan genererBilanMensuel(Month month, Year year) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Page<Object[]> genererBilanMensuel(String month, String year, int page, int size) {
+        return bilanRepository.genererBilanMensuel(year, month, new PageRequest(page, size));
     }
 
     @Override
-    public Bilan genererBilanAnnuel(Year year) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Page<Object[]> genererBilanAnnuel(String year, int page, int size) {
+        return bilanRepository.genererBilanAnnuel(year, new PageRequest(page, size));
     }
 
     @Override
@@ -326,6 +326,11 @@ public class StockImpl implements IStockDao{
     @Override
     public Page<Object[]> getRole(Long idRole, int page, int size) {
         return roleRepository.getRole(idRole, new PageRequest(page, size));
+    }
+
+    @Override
+    public Page<Object[]> getBilan(Long idBilan, int page, int size) {
+        return bilanRepository.getBilan(idBilan, new PageRequest(page, size));
     }
     
 }

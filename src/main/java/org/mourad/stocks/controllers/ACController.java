@@ -271,8 +271,34 @@ public class ACController {
         return (bilan.getIdBilan()==null)? AC.ajouterBilan(bilan):null;
     }
     
-    /*public BilanJournalier genererBilanJournalier(Date date);
-    public Bilan genererBilanMensuel(Month month, Year year);
-    public Bilan genererBilanAnnuel(Year year);*/
+    //public BilanJournalier genererBilanJournalier(Date date);
+    @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(
+            value = "/stocks/generer/bilan/mensuel",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET
+    )
+    public Page<Object[]> genererBilanMensuel(
+            @RequestParam(name = "month")String month, 
+            @RequestParam(name = "year")String year,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size   ){
+        
+        return AC.genererBilanMensuel(month, year, 0, 10);
+    }
+    
+    @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(
+            value = "/stocks/generer/bilan/annuel",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET
+    )
+    public Page<Object[]> genererBilanAnnuel(
+            @RequestParam(name = "year")String year,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size   ){
+        
+        return AC.genererBilanAnnuel(year, 0, 10);
+    }
     
 }
