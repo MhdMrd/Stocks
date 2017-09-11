@@ -34,8 +34,10 @@
         <td>Nom</td>
         <td>Quantité disponible</td>
         <td>Quantité défectueuse</td>
-        <td>Remarque</td>
+        <td ng-hide="commander">Remarque</td>
         <td ng-hide="!commander">Commander</td>
+        <td ng-hide="!commander || !hideQte">Qté voulue</td>
+        <td ng-hide="!commander">Observations</td>
       </tr>
     </thead>
     <tbody>
@@ -43,8 +45,20 @@
         <td>{{categorie[1]}}</td>
         <td>{{categorie[2]}}</td>
         <td>{{categorie[3]}}</td>
-        <td class="truncate">{{categorie[4]}}</td>
-        <td ng-hide="!commander"><input type="checkbox" class="filled-in check-element animate-show-hide" id="{{$index}}" for="filled-in" ng-click = "passerCommande(categorie[0], $index)" /> <label for="{{$index}}"></label></td>
+        <td class="truncate" ng-hide="commander">{{categorie[4]}}</td>
+        <td ng-if="commander"><input type="checkbox" class="filled-in check-element animate-show-hide" id="{{$index}}" for="filled-in" ng-click = "passerCommande(categorie[0], $index)"/><label for="{{$index}}"></label></td>
+        <td ng-hide="!commander || !hideQte">
+            <input-field>
+              <input type="number" id="i{{$index}}" ng-model="Qte" value="0" length="50" class="validate pad" ng-change = "updateQtes($index)" required>
+              <label>Qté</label>
+            </input-field>
+        </td>
+        <td ng-hide="!commander || !hideQte">
+          <input-field>
+              <textarea id="t{{$index}}" class="materialize-textarea" ng-change = "updateObs($index)" ng-model="categorie[4]" class="validate pad" required>{{categorie[4]}}</textarea>
+              <label>Observations</label>
+          </input-field>
+        </td>
         <td><a href ="" ng-click="details(categorie[0])" class="" data-target="informationsModal" modal>Détails</a></td>
         <td><a ng-href="#stocks/edit/categorie/{{categorie[0]}}" class="">Modifier</a></td>
         <td><a href ="" ng-click="details(categorie[0])" class="" data-target="deleteModal" modal>Supprimer</a></td>
@@ -62,9 +76,10 @@
 <div id="informationsModal" class="modal">
     <div class="modal-content center">
         <div class="title">
-          <h5>Détails de la catégorie</h5>
+          <h5>Détails de la commande</h5>
         </div>
         <div class="row">
+        <p></p>
                 <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
                 <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
                 <p class="left-align">Quantité défectueuse:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
@@ -94,8 +109,4 @@
       <a href="#/stocks/listes/categories" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="delete(selectedItem.content[0][0])">Oui</a>
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Non</a>
     </div>
-</div>
-<div class="row">
-  commanderThis:  {{commanderThis}} <br>
-  cats: {{cats}}
 </div>

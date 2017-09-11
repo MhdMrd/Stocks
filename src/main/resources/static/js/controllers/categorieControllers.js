@@ -2,6 +2,7 @@ stocksApp
   .controller("newCategorieController", ["$scope", "$http","$location", "$window", "CategorieService", function($scope, $http, $location, $window, CategorieService){
     $scope.home = false;
     $scope.isGet=false;
+    $scope.hideQte = false;
     cats = [];
     var cat = {
       "nom":null,
@@ -26,6 +27,10 @@ stocksApp
       "quantiteDisponible":0,
       "remarque":"RAS"
     };
+    var Res = [];
+    $scope.Qte = 0;
+    $scope.Qtes = [];
+    $scope.Obs = [];
     $scope.totalPages = null;
     $scope.page=0;
     $scope.total = null;
@@ -80,13 +85,6 @@ stocksApp
     };
     function successCallback(response){
       if($scope.commander){
-        $scope.c1.push(response.data.content[0][1]);
-        $scope.c1.push(response.data.content[0][2]);
-        $scope.c1.push(response.data.content[0][3]);
-        $scope.c1.push(response.data.content[0][4]);
-        $scope.c1.push(response.data);
-        $scope.cat = response.data;
-        ok(response.data);
       }
       if($scope.isGet && !$scope.commander){
           $scope.categories = response.data;
@@ -98,14 +96,6 @@ stocksApp
       
     }
     function ok(argument) {
-      // body...
-      $scope.cat = argument;
-      cat = {
-        "nom":argument.content[0][1],
-        "restant":argument.content[0][2],
-        "commandee":argument.content[0][3],
-        "observations":argument.content[0][4]
-      };
     }
     function errorCallback(error){
       alert(error);
@@ -125,15 +115,38 @@ stocksApp
         $scope.getListe();
     }
 
+    $scope.updateObs = function (argument) {
+      // body...
+      if ($scope.Obs.length==0) {
+        $scope.Obs[0] = document.getElementById('t'+argument).value;
+      }else{
+        $scope.Obs[argument] = document.getElementById('t'+argument).value;
+      }
+
+    }
+
+    $scope.updateQtes = function (argument) {
+      // body...
+      if ($scope.Qtes.length==0) {
+        $scope.Qtes[0] = document.getElementById('i'+argument).value;
+      }else{
+        $scope.Qtes[argument] = document.getElementById('i'+argument).value;
+      }
+       
+    }
+
     $scope.passerCommande = function (idCategorie, id) {
       var checked = document.getElementById(id).checked;
       if (!checked) {
         $scope.commanderThis = false;
       }else {
         $scope.commanderThis =true;
+        $scope.hideQte = true;
       }
       if ($scope.commanderThis) {
         cats.push(idCategorie);
+        $scope.Qtes.push($scope.Qte);
+        $scope.Obs.push(document.getElementById('t'+id).value);
       }else{
         cats.splice(id-1, 1);
       }
@@ -141,13 +154,19 @@ stocksApp
       if (cats.length>0) {
         $scope.catsEmpty = false;
       }
+      var checkbox = document.getElementById(id);
+      if (!checked) {
+        
+      }else{
+        
+      }
+      
     }
     $scope.updateCommanderB = function () {
       // body...
       $scope.commander = !$scope.commander;
       if (!$scope.commander) {
         $scope.catsEmpty = true;
-        $scope.cats = [];
       }
     };
     $scope.updateVisualiser = function () {
@@ -268,6 +287,8 @@ stocksApp
             
            var c= [];
             var i=0;
+            console.log("$scope.Qtes: "+$scope.Qtes);
+            console.log("$scope.Obs: "+$scope.Obs);
             for (i = 0; i < cats.length; i++) {
               c=[];
            
@@ -283,9 +304,9 @@ stocksApp
                     c.push(i+1);
                     c.push(r[1].slice(1,r[1].length-1));
                     c.push(r[2]);
-                    c.push(r[3]);
-                    c.push(r[4].slice(1,r[4].length-1));
-                    
+                    c.push($scope.Qtes[i]);
+                    c.push($scope.Obs[i]);
+                    Res.push(r[2]);
                     docDefinition.content[4].table.body[docDefinition.content[4].table.body.length] = c;
                 
                 } else {
@@ -293,22 +314,42 @@ stocksApp
                 }
             }
             pdf = docDefinition;
-              
-            
-                    
-                    
 };
 $scope.generer=function () {
   // body...
-  if ($scope.visualiser) {
-              pdfMake.createPdf(pdf).open();
-            }
-              if ($scope.imprimer) {
-                pdfMake.createPdf(pdf).print();
-              }
-              if ($scope.telecharger) {
-                pdfMake.createPdf(pdf).download('Commande.pdf');
-              }
+    if ($scope.visualiser) {
+      pdfMake.createPdf(pdf).open();
+    }
+    if ($scope.imprimer) {
+      pdfMake.createPdf(pdf).print();
+    }
+    if ($scope.telecharger) {
+      pdfMake.createPdf(pdf).download('Commande.pdf');
+    }
 
+    for (var i = 0; i < cats.length; i++) {
+      var d = new Date();
+      var nCommande={
+                "reference":""+d.getSeconds()+""+employeAuth+""+d.getMinutes()+""+d.getYear()+""+cats[i],
+                "employeEmetteur":{
+                  "idEmploye":employeAuth
+                },
+                "quantiteRestante":Res[i],
+                "categorie":{
+                  "idCategorie":cats[i]
+                },
+                //"dateCommande":new Date($scope.date.toString()+" "+$scope.time.toString()).getTime()
+                "dateCommande":Date.now(),
+                "quantiteACommander":$scope.Qtes[i],
+                "observations":$scope.Obs[i]
+              }
+              $http.post("/stocks/add/commande", nCommande).then(function (response) {
+                // body...
+                console.log("Commande ajoutée avec succès.");
+              }, function (error) {
+                // body...
+                console.log(error);
+              })
+    }
 };
   }])

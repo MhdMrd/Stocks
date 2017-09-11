@@ -4,12 +4,32 @@
 	<title>TEST</title>
 	<link rel="stylesheet" type="text/css" href="Angular-Materialize/materialize.min.css">
 </head>
-<body>
+<body text="#990000" onload="closeMe();self.focus()">
 <script type="text/javascript" src="Angular-Materialize/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="Angular-Materialize/materialize.min.js"></script>
 
 <div class="row">
+<a href="" class="btn" onclick="var w = window.open(); var t= null; t=setTimeout(w.close(), 5000);">Close</a><br>
 	<a class="btn tooltipped" data-tooltip="Tooltip" data-position="top" data-delay="100">Tooltip</a>
 </div>
+<div class="row">
+	
+
+
+<table align="center" width="300">
+<tr>
+   <TD align="center">
+         <P align="center"><B>This window will self destruct in 5 seconds!</B>
+   </TD>
+</tr>
+</table>   
+</div>
+<script>
+   var howLong = 5000;
+   t = null;
+   function closeMe(){
+   t = setTimeout("self.close()",howLong);
+   }
+   </script>
 </body>
 </html>
