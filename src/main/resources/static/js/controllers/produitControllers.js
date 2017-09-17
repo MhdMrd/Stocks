@@ -14,8 +14,6 @@ stocksApp
       "situation":"Situation",
       "designation":null,
       "numSerie":null,
-      "prixNormal":0,
-      "prixPromotionel":0,
       "etat":"Etat",
       "remarque":"RAS"
     };
@@ -58,8 +56,6 @@ stocksApp
       if ($scope.endOfPath=="produit") {
           var designation = $scope.produit.designation;
           var numSerie=$scope.produit.numSerie;
-          var prixNormal=$scope.produit.prixNormal;
-          var prixPromotionel=$scope.produit.prixPromotionel;
           var etat=$scope.produit.etat;
           var remarque=$scope.produit.remarque;
           var idcategorie = $scope.produit.categorie;
@@ -70,8 +66,6 @@ stocksApp
             },
             "designation":designation,
             "numSerie":numSerie,
-            "prixNormal":prixNormal,
-            "prixPromotionel":prixPromotionel,
             "etat":etat,
             "remarque":remarque
           };
@@ -88,8 +82,6 @@ stocksApp
             },
             "designation":$scope.selectedItem.$promise.$$state.value.content[0][1].toString(),
             "numSerie":$scope.selectedItem.$promise.$$state.value.content[0][2].toString(),
-            "prixNormal":parseInt($scope.selectedItem.$promise.$$state.value.content[0][4]),
-            "prixPromotionel":parseInt($scope.selectedItem.$promise.$$state.value.content[0][5]),
             "etat":$scope.selectedItem.$promise.$$state.value.content[0][6].toString(),
             "remarque":$scope.selectedItem.$promise.$$state.value.content[0][7].toString()
           };
@@ -101,8 +93,6 @@ stocksApp
             "situation":$scope.selectedItem.$promise.$$state.value.content[0][9].toString(),
             "designation":$scope.selectedItem.$promise.$$state.value.content[0][1].toString(),
             "numSerie":$scope.selectedItem.$promise.$$state.value.content[0][2].toString(),
-            "prixNormal":parseInt($scope.selectedItem.$promise.$$state.value.content[0][4]),
-            "prixPromotionel":parseInt($scope.selectedItem.$promise.$$state.value.content[0][5]),
             "etat":$scope.selectedItem.$promise.$$state.value.content[0][6].toString(),
             "remarque":$scope.selectedItem.$promise.$$state.value.content[0][7].toString()
           };
@@ -123,8 +113,6 @@ stocksApp
         "situation":"Situation",
         "designation":null,
         "numSerie":null,
-        "prixNormal":0,
-        "prixPromotionel":0,
         "etat":"Etat",
         "remarque":"RAS"
     };

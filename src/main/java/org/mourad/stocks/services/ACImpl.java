@@ -158,4 +158,9 @@ public class ACImpl implements IAC{
         return stockDao.genererBilanAnnuel(year, page, size);
     }
     
+    @Override
+    public Page<Object[]> getAllBilans(int page, int size){
+        return stockDao.getAllBilans(page, size);
+    }
+    
 }

@@ -37,12 +37,6 @@ public class Produit implements Serializable{
     private String numSerie;
     @Column(nullable = false)
     private String designation;
-    /*@Column(nullable = false)
-    private int seuil;*/
-    @Column(nullable = false)
-    private int prixNormal;
-    @Column(nullable = false)
-    private int prixPromotionel;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private  Etats etat;
@@ -58,11 +52,9 @@ public class Produit implements Serializable{
     public Produit() {
     }
 
-    public Produit(String numSerie, String designation, int prixNormal, int prixPromotionel, Etats etat, Situation situation, String remarque, Categorie categorie) {
+    public Produit(String numSerie, String designation, Etats etat, Situation situation, String remarque, Categorie categorie) {
         this.numSerie = numSerie;
         this.designation = designation;
-        this.prixNormal = prixNormal;
-        this.prixPromotionel = prixPromotionel;
         this.etat = etat;
         this.situation = situation;
         this.remarque = remarque;
@@ -99,22 +91,6 @@ public class Produit implements Serializable{
 
     public void setDesignation(String designation) {
         this.designation = designation;
-    }
-
-    public int getPrixNormal() {
-        return prixNormal;
-    }
-
-    public void setPrixNormal(int prixNormal) {
-        this.prixNormal = prixNormal;
-    }
-
-    public int getPrixPromotionel() {
-        return prixPromotionel;
-    }
-
-    public void setPrixPromotionel(int prixPromotionel) {
-        this.prixPromotionel = prixPromotionel;
     }
 
     public Etats getEtat() {

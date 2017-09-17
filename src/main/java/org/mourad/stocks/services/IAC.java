@@ -43,6 +43,7 @@ public interface IAC {
     public Categorie modifierCategorie(Categorie categorie, Long idCategorie);
     public void supprimerCategorie(Long idCategorie);
     public Bilan ajouterBilan(Bilan bilan);
+    public Page<Object[]> getAllBilans(int page, int size);
     public BilanJournalier genererBilanJournalier(Date date);
     public Page<Object[]> genererBilanMensuel(String month, String year, int page, int size);
     public Page<Object[]> genererBilanAnnuel(String year, int page, int size);

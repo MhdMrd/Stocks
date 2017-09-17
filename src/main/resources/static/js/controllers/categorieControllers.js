@@ -16,6 +16,7 @@ stocksApp
     $scope.imprimer = false;
     $scope.telecharger = false;
     $scope.commander = false;
+    $scope.destocker = false;
     $scope.commanderThis = false;
     $scope.catsEmpty = true;
     $scope.categories=null;
@@ -25,9 +26,14 @@ stocksApp
       "nom":null,
       "quantiteDefecteux":0,
       "quantiteDisponible":0,
-      "remarque":"RAS"
+      "remarque":"RAS",
+      "prixNormal":0,
+      "prixPromotionel":0,
+      "seuil":0,
+      "destocke":0
     };
     var Res = [];
+    var des = 0;
     $scope.Qte = 0;
     $scope.Qtes = [];
     $scope.Obs = [];
@@ -39,6 +45,7 @@ stocksApp
     $scope.onload=function() {
       if($scope.endOfPath!="categorie" && $scope.endOfPath!="categories"){
         $scope.selectedItem = CategorieService.get({idCategorie:$scope.endOfPath});
+        des = $scope.selectedItem.content[0][8];
       }
     }
     //GET list of categories
@@ -62,7 +69,11 @@ stocksApp
             "nom":$scope.selectedItem.content[0][1],
             "quantiteDisponible":$scope.selectedItem.content[0][2],
             "quantiteDefectueux":$scope.selectedItem.content[0][3],
-            "remarque":$scope.selectedItem.content[0][4]
+            "remarque":$scope.selectedItem.content[0][4],
+            "prixNormal":$scope.selectedItem.content[0][5],
+            "prixPromotionel":$scope.selectedItem.content[0][6],
+            "seuil":$scope.selectedItem.content[0][7],
+            "destocke":parseInt(parseInt(des) + ($scope.selectedItem.content[0][8] - parseInt(des)))
           }
           $http.put("/stocks/edit/categorie/"+$scope.endOfPath, $scope.categorieToUpdate).then(successCallback, errorCallback);
           //ClientServicePut.update({idClient:$scope.endOfPath}, $scope.clientToUpdate);
@@ -70,11 +81,15 @@ stocksApp
     };
     $scope.reset=function(categorie){
       $scope.categorie={
-        "nom":null,
-        "quantiteDefecteux":0,
-        "quantiteDisponible":0,
-        "remarque":"RAS"
-      };
+      "nom":null,
+      "quantiteDefecteux":0,
+      "quantiteDisponible":0,
+      "remarque":"RAS",
+      "prixNormal":0,
+      "prixPromotionel":0,
+      "seuil":0,
+      "destocke":0
+    };
       if($scope.endOfPath!="categorie" && $scope.endOfPath!="categories"){
         $scope.selectedItem.content[0]=[null, null, null, null, null];
       }
@@ -169,6 +184,10 @@ stocksApp
         $scope.catsEmpty = true;
       }
     };
+    $scope.updateDestocker = function () {
+      // body...
+      $scope.destocker = !$scope.destocker;
+    };
     $scope.updateVisualiser = function () {
       // body...
       $scope.imprimer = false;
@@ -218,13 +237,13 @@ stocksApp
 /*4*/             {
                 style: 'tableExample',
                 table: {
-                  widths: [50, '*', 50, 70, '*'],
+                  widths: [50, '*', 50, 70, 50, 50, '*'],
                   headerRows: 1,
                   // dontBreakRows: true,
                   // keepWithHeaderRows: 1,
                   body: [
 
-                    [{text: 'Numéro', style: 'tableHeader', width:100}, {text: 'Catégorie', style: 'tableHeader', width:150}, {text: 'Restant', style: 'tableHeader', width:100},{text: 'Commandé', style: 'tableHeader', width:100},{text: 'Observations', style: 'tableHeader', width:300}],
+                    [{text: 'Numéro', style: 'tableHeader', width:50}, {text: 'Catégorie', style: 'tableHeader', width:150}, {text: 'Restant', style: 'tableHeader', width:50},{text: 'Commandé', style: 'tableHeader', width:50},{text: 'PU', style: 'tableHeader', width:50},{text: 'PT', style: 'tableHeader', width:50},{text: 'Observations', style: 'tableHeader', width:300}],
                     
                   ]
                 }
@@ -305,6 +324,8 @@ stocksApp
                     c.push(r[1].slice(1,r[1].length-1));
                     c.push(r[2]);
                     c.push($scope.Qtes[i]);
+                    c.push(r[5]+"F");
+                    c.push((r[5]*$scope.Qtes[i])+"F");
                     c.push($scope.Obs[i]);
                     Res.push(r[2]);
                     docDefinition.content[4].table.body[docDefinition.content[4].table.body.length] = c;

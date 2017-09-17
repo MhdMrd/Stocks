@@ -16,6 +16,18 @@
     <label>Nom</label>
   </input-field>
   <input-field>
+    <input type="number" ng-model="categorie.prixNormal" length="50" class="validate pad" required>
+    <label>Prix en temps normal</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="categorie.prixPromotionel" length="50" class="validate pad" required>
+    <label>Prix en temps de promo</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="categorie.seuil" length="50" class="validate pad" required>
+    <label>Seuil de disponibilité</label>
+  </input-field>
+  <input-field>
     <input type="number" ng-model="categorie.quantiteDisponible" length="50" class="validate pad" required>
     <label>Quantité disponible</label>
   </input-field>
@@ -36,6 +48,9 @@
         </div>
         <div class="row">
                 <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.nom}}</p>
+                <p class="left-align">Prix normal:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.prixNormal}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Prix promotionnel:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.prixPromotionel}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Seuil:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.seuil}}</p>
                 <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.quantiteDisponible}}</p>
                 <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{categorie.remarque}}</p>
 

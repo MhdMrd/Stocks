@@ -3,33 +3,48 @@
 -->
 <meta charset="UTF-8">
 
-<title>Liste des commandes</title>
-<h3 class="header center">Liste des commandes&nbsp&nbsp <i class="fa fa-list-alt"></i></h3>
-<div class="container row" ng-init="load()">
+<title>Liste des bilans</title>
+<h3 class="header center">Liste des bilans&nbsp&nbsp <i class="fa fa-list-alt"></i></h3>
+<div style="padding: 10px;" class="row" ng-init="load()">
   <table class="responsive-table">
     <thead>
       <tr>
-        <td>Référence</td>
         <td>Catégorie</td>
-        <td>Employé</td>
-        <td>Restant</td>
-        <td>Commandé</td>
-        <td>Date</td>
-        <td>Observations</td>
+        <td>Période</td>
+        <td>Initial</td>
+        <td>Approv.</td>
+        <td>Stock total</td>
+        <td>Qté. vente ord</td>
+        <td>PU vente ord</td>
+        <td>Montant vente ord</td>
+        <td>Qté. vente promo</td>
+        <td>PU vente promo</td>
+        <td>Montant vente promo</td>
+        <td>Qté total ventes</td>
+        <td>Montant total ventes</td>
+        <td>Déstockage</td>
+        <td>Reste</td>
+        <td>Qté. défectueuse</td>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="commande in commandes.content">
-        <td>{{commande[1]}}</td>
-        <td>{{commande[2]}}</td>
-        <td>{{commande[3]}}&nbsp&nbsp&nbsp{{commande[4]}}</td>
-        <td>{{commande[5]}}</td>
-        <td>{{commande[6]}}</td>
-        <td>{{commande[7] | date : "d MMM y, HH:mm:ss"}}</td>
-        <td>{{commande[8]}}</td>
-        <td><a href ="" ng-click="details(commande[0])" class=""data-target="informationsModal" modal>Détails</a></td>
-        <td><a ng-href="#stocks/edit/commande/{{commande[0]}}" class="">Modifier</a></td>
-        <td><a href ="" ng-click="details(commande[0])" class=""data-target="deleteModal" modal>Supprimer</a></td>
+      <tr ng-repeat="bilan in bilans.content">
+        <td>{{bilan[5]}}</td>
+        <td>{{bilan[1]}}, &nbsp&nbsp{{bilan[2]}}</td>
+        <td>{{bilan[3]}}</td>
+        <td>{{bilan[7]}}</td>
+        <td>{{bilan[4]}}</td>
+        <td>{{bilan[8]}}</td>
+        <td>{{bilan[9]}}</td>
+        <td>{{bilan[9]*bilan[8]}}</td>
+        <td>{{bilan[10]}}</td>
+        <td>{{bilan[11]}}</td>
+        <td>{{bilan[10]*bilan[11]}}</td>
+        <td>{{bilan[8]+bilan[10]}}</td>
+        <td>{{(bilan[9]*bilan[8])+(bilan[10]*bilan[11])}}</td>
+        <td>{{bilan[12]}}</td>
+        <td>{{bilan[4]-(bilan[3]+bilan[7])}}</td>
+        <td>{{bilan[13]}}</td>
       </tr>
     </tbody>
   </table>
@@ -44,7 +59,7 @@
 <div id="informationsModal" class="modal">
     <div class="modal-content center">
         <div class="title">
-          <h5>Détails de la commande</h5>
+          <h5>Détails de la bilan</h5>
         </div>
         <div class="row">
                 <p class="left-align">Référence:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
@@ -52,7 +67,7 @@
                 <p class="left-align">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
                 <p class="left-align">Restant:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}</p>
                 <p class="left-align">Commandé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
-                <p class="left-align">Date de commande:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
+                <p class="left-align">Date de bilan:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
                 <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
         </div>
 
@@ -64,7 +79,7 @@
 <div id="deleteModal" class="modal">
     <div class="modal-content center">
         <div class="title">
-          <h5>Êtes-vous certain de vouloir supprimer cette commande?</h5>
+          <h5>Êtes-vous certain de vouloir supprimer cette bilan?</h5>
         </div>
         <div class="row">
                 <p class="left-align">Référence:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
@@ -72,12 +87,12 @@
                 <p class="left-align">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
                 <p class="left-align">Restant:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}</p>
                 <p class="left-align">Commandé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
-                <p class="left-align">Date de commande:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
+                <p class="left-align">Date de bilan:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
                 <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
         </div>
     </div>
     <div class="modal-footer">
-      <a href="#/stocks/listes/commandes" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="delete(selectedItem.content[0][0])">Oui</a>
+      <a href="#/stocks/listes/bilans" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="delete(selectedItem.content[0][0])">Oui</a>
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Non</a>
     </div>
 </div>

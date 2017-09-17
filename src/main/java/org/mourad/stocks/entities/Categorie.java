@@ -28,6 +28,14 @@ public class Categorie implements Serializable{
     @Column(nullable = false, unique = true)
     private String nom;
     @Column(nullable = false)
+    private int seuil;
+    @Column(nullable = false)
+    private int prixNormal;
+    @Column(nullable = false)
+    private int prixPromotionel;
+    @Column(nullable = false)
+    private int destocke;
+    @Column(nullable = false)
     private int quantiteDisponible;
     private int quantiteDefectueux;
     private String remarque;
@@ -46,11 +54,47 @@ public class Categorie implements Serializable{
         this.quantiteDisponible = quantiteDisponible;
     }
 
-    public Categorie(String nom, int quantiteDisponible, int quantiteDefectueux, String remarque) {
+    public Categorie(String nom, int seuil, int prixNormal, int prixPromotionel, int destocke, int quantiteDisponible, int quantiteDefectueux, String remarque) {
         this.nom = nom;
+        this.seuil = seuil;
+        this.prixNormal = prixNormal;
+        this.prixPromotionel = prixPromotionel;
+        this.destocke = destocke;
         this.quantiteDisponible = quantiteDisponible;
         this.quantiteDefectueux = quantiteDefectueux;
         this.remarque = remarque;
+    }
+
+    public int getDestocke() {
+        return destocke;
+    }
+
+    public void setDestocke(int destocke) {
+        this.destocke = destocke;
+    }
+
+    public int getSeuil() {
+        return seuil;
+    }
+
+    public void setSeuil(int seuil) {
+        this.seuil = seuil;
+    }
+
+    public int getPrixNormal() {
+        return prixNormal;
+    }
+
+    public void setPrixNormal(int prixNormal) {
+        this.prixNormal = prixNormal;
+    }
+
+    public int getPrixPromotionel() {
+        return prixPromotionel;
+    }
+
+    public void setPrixPromotionel(int prixPromotionel) {
+        this.prixPromotionel = prixPromotionel;
     }
     
     public Long getIdCategorie() {

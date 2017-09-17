@@ -19,17 +19,17 @@ import org.springframework.data.repository.query.Param;
  * @author Mourad<mohammadabdoulahi@gmail.com>
  */
 public interface IVenteRepository extends JpaRepository<Vente, Long>{
-    @Query("SELECT v.idVente, v.employe.nom, v.employe.prenom, v.produit.designation, v.produit.categorie.nom, v.dateVente, v.etat, v.produit.prixNormal, v.client.nom, v.client.prenom FROM Vente v")
+    @Query("SELECT v.idVente, v.employe.nom, v.employe.prenom, v.produit.designation, v.produit.categorie.nom, v.dateVente, v.etat, v.produit.categorie.prixNormal, v.client.nom, v.client.prenom, v.promotion FROM Vente v")
     public Page<Object[]> findAllVentes(Pageable pageable);
     
     public Vente findByProduitAndEmploye(Produit produit, Employe employe);
     
-    @Query("SELECT v.employe.nom, v.produit.designation, v.dateVente FROM Vente v WHERE v.etat=:x")
+    @Query("SELECT v.employe.nom, v.produit.designation, v.dateVente, v.promotion FROM Vente v WHERE v.etat=:x")
     public Page<Object[]> findAllByEtat(@Param("x")EtatVente etat, Pageable pageable);
     
-    @Query("SELECT v.produit.designation, v.dateVente FROM Vente v WHERE v.employe.idEmploye=:x")
+    @Query("SELECT v.produit.designation, v.dateVente, v.promotion FROM Vente v WHERE v.employe.idEmploye=:x")
     public Page<Object[]> findVentesDe(@Param("x")Long idEmploye, Pageable pageable);
     
-    @Query("SELECT v.idVente, v.employe.nom, v.employe.prenom, v.produit.designation, v.produit.categorie.nom, v.dateVente, v.etat, v.produit.prixNormal, v.client.nom, v.client.prenom, v.client.idClient, v.produit.idProduit, v.employe.idEmploye FROM Vente v WHERE v.idVente=:x")
+    @Query("SELECT v.idVente, v.employe.nom, v.employe.prenom, v.produit.designation, v.produit.categorie.nom, v.dateVente, v.etat, v.produit.categorie.prixNormal, v.client.nom, v.client.prenom, v.client.idClient, v.produit.idProduit, v.employe.idEmploye FROM Vente v WHERE v.idVente=:x")
     public Page<Object[]> getVente(@Param("x") Long idVente, Pageable pageable);
 }

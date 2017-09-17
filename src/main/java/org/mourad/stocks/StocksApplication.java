@@ -60,28 +60,29 @@ public class StocksApplication implements CommandLineRunner{
         Client client = stockDao.ajouterClient(new Client("IMPL11DFS", "Mourad", "Mohammad"));
         Client client1 = stockDao.ajouterClient(new Client("IMPL111DFD", "Youssfi", "Hassan"));
         Client client2 = stockDao.ajouterClient(new Client("IMPL111DDS", "Hamza", "Mohammad"));
-        Categorie c = stockDao.ajouterCategorie(new Categorie("Modems IMPL", 50, 10, "Pour le moment ça va."));
+        Categorie c;
+        c = stockDao.ajouterCategorie(new Categorie("Modems IMPL",5, 50, 10,0,50, 20, "Pour le moment ça va."));
         c.setIdCategorie(c.getIdCategorie());
-        Categorie s = stockDao.ajouterCategorie(new Categorie("Smartphones IMPL", 50, 10, "RAS ici"));
+        Categorie s = stockDao.ajouterCategorie(new Categorie("Smartphones IMPL",10,0, 50, 10,50,20, "RAS ici"));
         s.setIdCategorie(s.getIdCategorie());
-        Categorie sim  = stockDao.ajouterCategorie(new Categorie("SIM IMPL", 50, 10, "Ici non plus"));
+        Categorie sim  = stockDao.ajouterCategorie(new Categorie("SIM IMPL",15, 50, 10,0,50,20, "Ici non plus"));
         sim.setIdCategorie(sim.getIdCategorie());
         //Produit p=new Produit("12845Ab IMPL","WiFi",5,50,60 Etats.Bon, Situation.Disponible,c);
-        Produit p = new Produit("12845Ab IMPL", "Wifi", 50, 20, Etats.Bon, Situation.Disponible, "RAS", c);
+        Produit p = new Produit("12845Ab IMPL", "Wifi",Etats.Bon, Situation.Disponible, "RAS", c);
         produitRepository.save(p);
-        Produit p1=new Produit("12915Ab", "WiFi haut Débit", 50, 20, Etats.Bon, Situation.Disponible, numSerie, c);
+        Produit p1=new Produit("12915Ab", "WiFi haut Débit", Etats.Bon, Situation.Disponible, numSerie, c);
         
         produitRepository.save(p1);
-        Produit p2=new Produit("GSGS85SD", "Camtel CT",50, 20, Etats.Bon, Situation.Disponible, numSerie, s);
+        Produit p2=new Produit("GSGS85SD", "Camtel CT", Etats.Bon, Situation.Disponible, numSerie, s);
         
         produitRepository.save(p2);
-        Produit p3=new Produit(numSerie+"OJ", "CT Phone",50, 20, Etats.Bon, Situation.Disponible, numSerie, s);
+        Produit p3=new Produit(numSerie+"OJ", "CT Phone",Etats.Bon, Situation.Disponible, numSerie, s);
         
         produitRepository.save(p3);
-        p=new Produit("IMPL98", "SIM GSM", 50, 20, Etats.Bon, Situation.Disponible, numSerie, sim);
+        p=new Produit("IMPL98", "SIM GSM", Etats.Bon, Situation.Disponible, numSerie, sim);
         
         stockDao.ajouterProduit(p);
-        p=new Produit("IMPL54GJ", "SIM 3G", 50, 20, Etats.Bon, Situation.Disponible, numSerie, sim);
+        p=new Produit("IMPL54GJ", "SIM 3G", Etats.Bon, Situation.Disponible, numSerie, sim);
         
         stockDao.ajouterProduit(p);
         Employe ep = new Employe("IMPL EMP 01", "Mourad", "Mohammad", "Caissier");
@@ -98,18 +99,19 @@ public class StocksApplication implements CommandLineRunner{
         Achat a1 =stockDao.ajouterAchat(new Achat(client1, p3, new Date()));
         Achat a2 =stockDao.ajouterAchat(new Achat(client2, p2, new Date()));
         */
-        Vente v = stockDao.ajouterVente(new Vente(e3, p3,client2, new Date(), EtatVente.Effectuee));
-        Vente v1 = stockDao.ajouterVente(new Vente(e1, p1, client, new Date(), EtatVente.En_attente));
-        Vente v2 = stockDao.ajouterVente(new Vente(e1, p2, client1, new Date(), EtatVente.Effectuee));
+        Vente v = stockDao.ajouterVente(new Vente(e3, p3,client2, new Date(),Boolean.TRUE, EtatVente.Effectuee));
+        Vente v1 = stockDao.ajouterVente(new Vente(e1, p1, client, new Date(),Boolean.FALSE, EtatVente.En_attente));
+        Vente v2 = stockDao.ajouterVente(new Vente(e1, p2, client1, new Date(),Boolean.FALSE, EtatVente.Effectuee));
         
         Commande com = stockDao.ajouterCommande(new Commande("REF IMPL 01", 10, 25, "RAS",new Date(), e3, sim));
         Commande com1 = stockDao.ajouterCommande(new Commande("REF IMPL 02", 10, 25, "RAS",new Date(), e1, c));
         Commande com2 = stockDao.ajouterCommande(new Commande("REF IMPL 03", 10, 25, "RAS",new Date(), e1, s));
         
-        Bilan b = stockDao.ajouterBilan(new Bilan(sim, Month.MAY.toString(), Year.now().toString(), 15, 12));
+        Bilan b;
+        b = stockDao.ajouterBilan(new Bilan(sim, Month.APRIL.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 8) /*Bilan(sim, Month.MAY.toString(), Year.now().toString(), 15, 12)*/);
         
-        Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.SEPTEMBER.toString(), Year.now().toString(), 15, 12));
-        Bilan b2 = stockDao.ajouterBilan(new Bilan(c, Month.JULY.toString(), Year.now().toString(), 15, 12));
+        Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
+        Bilan b2 = stockDao.ajouterBilan(new Bilan(c, Month.APRIL.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
         System.out.println(b.getAnnee());
         System.out.println("----------------Liste des produits de la catégorie:"+c.getNom()+"----------------");
         /*List<Vente> liste=stockDao.listeVentes();

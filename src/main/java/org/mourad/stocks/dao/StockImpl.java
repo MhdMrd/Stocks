@@ -333,4 +333,9 @@ public class StockImpl implements IStockDao{
         return bilanRepository.getBilan(idBilan, new PageRequest(page, size));
     }
     
+    @Override
+    public Page<Object[]> getAllBilans(int page, int size){
+        return bilanRepository.getAllBilans(new PageRequest(page, size));
+    }
+    
 }

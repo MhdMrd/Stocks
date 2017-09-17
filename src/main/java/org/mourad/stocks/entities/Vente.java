@@ -44,6 +44,7 @@ public class Vente implements Serializable{
     @JoinColumn(name = "client")
     private Client client;
     private Date dateVente;
+    private boolean promotion;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EtatVente etat;
@@ -58,12 +59,22 @@ public class Vente implements Serializable{
         this.dateVente = dateVente;
         this.etat = etat;
     }
-    
-    public Vente(Employe employe, Produit produit, Date dateVente, EtatVente etat) {
+
+    public Vente(Employe employe, Produit produit, Client client, Date dateVente, boolean promotion, EtatVente etat) {
         this.employe = employe;
         this.produit = produit;
+        this.client = client;
         this.dateVente = dateVente;
+        this.promotion = promotion;
         this.etat = etat;
+    }
+
+    public boolean isPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(boolean promotion) {
+        this.promotion = promotion;
     }
 
     public Long getIdVente() {

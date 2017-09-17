@@ -99,5 +99,9 @@ function stateConfig($routeProvider, $locationProvider) {
     .when("/stocks/listes/commandes", {
       templateUrl:"views/listeCommandes.html",
       controller:"newCommandeController"
+    })
+    .when("/stocks/listes/bilans", {
+      templateUrl:"views/listeBilans.html",
+      controller:"newBilanController"
     });
 }

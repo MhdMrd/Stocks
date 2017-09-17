@@ -301,4 +301,16 @@ public class ACController {
         return AC.genererBilanAnnuel(year, 0, 10);
     }
     
+    @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(
+            value = "/stocks/listes/bilans",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET
+    )
+    public Page<Object[]> getAllBilans(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size   ){
+        
+        return AC.getAllBilans(page, size);
+    }
 }

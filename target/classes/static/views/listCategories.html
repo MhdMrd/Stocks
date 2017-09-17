@@ -8,6 +8,7 @@
           <ul class="section table-of-contents">
             <li><a href="#stocks/add/categorie">Ajouter catégorie</a></li>
             <li><a href="" ng-click="updateCommanderB()">Commander</a></li>
+            <li><a href="" ng-click="updateDestocker()">Déstocker une catégorie</a></li>
           </ul>
 </div>
     <script type="text/javascript">
@@ -34,7 +35,12 @@
         <td>Nom</td>
         <td>Quantité disponible</td>
         <td>Quantité défectueuse</td>
+        <td ng-hide="commander || destocker">Prix normal</td>
+        <td ng-hide="commander || destocker">Prix promo</td>
+        <td>Seuil</td>
+        <td>Qté. déstockée</td>
         <td ng-hide="commander">Remarque</td>
+        <td ng-hide="!destocker">Déstocker</td>
         <td ng-hide="!commander">Commander</td>
         <td ng-hide="!commander || !hideQte">Qté voulue</td>
         <td ng-hide="!commander">Observations</td>
@@ -45,7 +51,12 @@
         <td>{{categorie[1]}}</td>
         <td>{{categorie[2]}}</td>
         <td>{{categorie[3]}}</td>
+        <td ng-hide="commander || destocker">{{categorie[5]}} F</td>
+        <td ng-hide="commander || destocker">{{categorie[6]}} F</td>
+        <td>{{categorie[7]}}</td>
+        <td>{{categorie[8]}}</td>
         <td class="truncate" ng-hide="commander">{{categorie[4]}}</td>
+        <td ng-if="destocker"><a ng-href="#stocks/edit/categorie/{{categorie[0]}}#destockee"><input type="checkbox" class="filled-in check-element animate-show-hide" id="d{{$index}}" for="filled-in" /><label for="d{{$index}}"></label></a></td>
         <td ng-if="commander"><input type="checkbox" class="filled-in check-element animate-show-hide" id="{{$index}}" for="filled-in" ng-click = "passerCommande(categorie[0], $index)"/><label for="{{$index}}"></label></td>
         <td ng-hide="!commander || !hideQte">
             <input-field>
@@ -81,6 +92,11 @@
         <div class="row">
         <p></p>
                 <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
+                <p class="left-align">Prix normal:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Prix promotionnel:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Seuil:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7]}}</p>
+                <p class="left-align">Quantité destockée:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
+                <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
                 <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
                 <p class="left-align">Quantité défectueuse:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
                 <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
@@ -98,6 +114,11 @@
         </div>
         <div class="row">
                 <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
+                <p class="left-align">Prix normal:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Prix promotionnel:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Seuil:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7]}}</p>
+                <p class="left-align">Quantité destockée:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
+                <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
                 <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
                 <p class="left-align">Quantité défectueuse:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
                 <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][4]}}</p>

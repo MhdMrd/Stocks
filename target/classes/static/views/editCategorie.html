@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <title>Modification d'une catégorie</title>
 <h3 class="header center">Modification d'une catégorie&nbsp&nbsp <i class="fa fa-pencil-square-o"></i></h3>
+<div style="height: 1px; padding-right: 3%; padding-top: 2%;" class="right">
+          <ul class="section table-of-contents">
+            <li><a href="#stocks/listes/categories">Liste catégories</a></li>
+          </ul>
+</div>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="container" ng-init="onload()">
   <input-field>
@@ -11,13 +16,29 @@
     <label>Nom</label>
   </input-field>
   <input-field>
+    <input type="number" ng-model="selectedItem.content[0][5]" length="50"  required class="validate">
+    <label>Prix normal</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="selectedItem.content[0][6]" length="50"  required class="validate">
+    <label>Prix en temps de promotion</label>
+  </input-field>
+  <input-field>
     <input type="number" ng-model="selectedItem.content[0][2]" length="50"  required class="validate">
     <label>Quantité disponible</label>
+  </input-field>
+  <input-field>
+    <input type="number" ng-model="selectedItem.content[0][7]" length="50"  required class="validate">
+    <label>Seuil de disponiblité</label>
   </input-field>
   <input-field>
     <input type="number" ng-model="selectedItem.content[0][3]" length="50" class="validate">
     <label>Quantité défecteuse</label>
 </input-field>
+<input-field>
+    <input id="destockee" type="number" ng-model="selectedItem.content[0][8]" length="50" class="validate pad" required>
+    <label>Quantité destockée</label>
+  </input-field>
 <input-field>
   <input type="text" ng-model="selectedItem.content[0][4]" length="50" class="validate">
   <label>Remarque</label>
@@ -35,6 +56,10 @@
         </div>
         <div class="row">
                 <p class="left-align">Nom:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
+                <p class="left-align">Prix normal:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Prix promotionnel:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}&nbsp&nbsp FCFA</p>
+                <p class="left-align">Seuil:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7]}}</p>
+                <p class="left-align">Quantité destockée:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
                 <p class="left-align">Quantité disponible:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
                 <p class="left-align">Quantité défectueuse:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}</p>
                 <p class="left-align">Remarque:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
