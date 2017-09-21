@@ -208,21 +208,27 @@ stocksApp
           //docDefinition.content[4].table.body[0]
           console.log("Cats:"+cats);
           var docDefinition = {
-            
-            content: [
-              
+            pageSize: 'A4',
+
+          // by default we use portrait, you can change it to landscape if you wish
+          pageOrientation: 'landscape',
+
+          // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+          pageMargins: [ 40, 60, 40, 60 ],
+                    content: [
+                      
   /*0*/       {
                 alignment: 'center',
                 columns: [
                   {
                     style:'header',
-                    width:200,
+                    width:250,
                     text: 'Réplubique du Cameroun\n     *********     \nCameroon Telecommunications\n     *********     \nReprésentation Régionale Extrême-Nord\n     *********     \nAgence de Maroua\n     *********     \nService AC'
                   },
                   {
                     style:'header',
-                    width:350,
-                    text: 'Replubique of Cameroon\n     *********     \nCameroon Telecommunications\n     *********     \nThe Far-North Regional\nRepresentation\n     *********     \nAgency of Maroua\n     *********     \nAC Service'
+                    width:740,
+                    text: 'Republic of Cameroon\n     *********     \nCameroon Telecommunications\n     *********     \nThe Far-North Regional Representation\n     *********     \nAgency of Maroua\n     *********     \nAC Service'
                   },
                 ]
               },
@@ -258,7 +264,7 @@ stocksApp
                   },
                   {
                     style:'header',
-                    width:350,
+                    width:800,
                     text: 'Le Chef d\'Agence'
                   },
                 ]
@@ -274,7 +280,7 @@ stocksApp
                   },
                   {
                     style:'header',
-                    width:350,
+                    width:800,
                     text: 'Mohammad Mourad Abdoulahi'
                   },
                 ]

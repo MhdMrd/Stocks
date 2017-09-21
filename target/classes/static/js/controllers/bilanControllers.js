@@ -2,61 +2,29 @@
       .controller("newBilanController", ["$scope", "$http", "$location", "$window", "BilanService", "CategorieService", function ($scope, $http, $location, $window, BilanService,CategorieService) {
         $scope.home = false;
         $scope.isGet=false;
+        $scope.type = null;
         $scope.hideCategorie = false;
         $scope.completeDate=null;
         $scope.selectedItem=null;
         $scope.bilans=null;
         $scope.time=null;
         $scope.date=null;
+        $scope.mois = null;
+        var pdf = null;
         $scope.restant = null;
         $scope.idC =0;
         $scope.totalPages = null;
         $scope.page=0;
         $scope.total = null;
-        $scope.bilanToUpdate={
-          "idBilan":null,
-          "employeEmetteur":{
-            "idEmploye":null
-          },
-          "categorie":{
-            "idCategorie":null
-          }
-        };
-        $scope.currentCategorie={
-          "idCategorie":null
-        };
         $scope.dateS={
           "date":null
         };
-
-        $scope.categories={
-          "value1":"Categorie",
-          "choices":[
-            "Categorie"
-          ]
-        };
         var dateB = new Date();
-        $scope.bilan={
-          "annee":dateB.getYear(),
-          "categorie":"Categorie",
-          "mois":dateB.getMonth(),
-          "quantiteDebut":0,
-          "quantiteFin":0
-        };
         $scope.totalPages = null;
         $scope.path=$location.path().split('/');
         $scope.endOfPath=$scope.path[$scope.path.length-1];
         
         $scope.onload=function() {
-          var tmpcategories = null;
-          $http.get("/stocks/listes/categories").then(function (response) {
-            tmpcategories = response.data;
-            $scope.categories.choices.push(tmpcategories);
-          })
-          if($scope.endOfPath!="bilan" && $scope.endOfPath!="bilans"){
-            $scope.selectedItem = BilanService.get({idBilan:$scope.endOfPath});
-            console.log($scope.selectedItem);
-        }
     }
         //GET list of bilans
         $scope.getListe=function(){
@@ -70,82 +38,22 @@
         //POST a category
         $scope.save=function(bilan) {
           if ($scope.endOfPath=="bilan") {
-            if($scope.date !=null && $scope.time!=null)
-              $scope.currentEmploye=$scope.bilan.employe;
-              $scope.currentCategorie=$scope.bilan.categorie;
-              $scope.currentClient = $scope.bilan.client;
-              var d = new Date();
-              console.log(d.getMinutes());
-              $scope.bilan={
-                "annee":dateB.getYear(),
-                "categorie":"Categorie",
-                "mois":dateB.getMonth(),
-                "quantiteDebut":0,
-                "quantiteFin":0
-              };
-              $http.post("/stocks/add/bilan", $scope.bilan);
-              //$window.location.href='#/stocks/listes/employes';
           }
-          //PUT a category
-          if ($scope.endOfPath!="bilan" && $scope.endOfPath!="bilans") {
-            
-              if ($scope.hideCategorie) {
-                console.log("02:   "+$scope.selectedItem.content[0][9]);
-              $scope.bilanToUpdate={
-                "reference":$scope.selectedItem.content[0][1],
-                "categorie":{
-                  "idCategorie":$scope.selectedItem.content[0][2][0]
-                },
-                "employeEmetteur":{
-                  "idEmploye":employeAuth
-                },
-                "quantiteRestante":$scope.selectedItem.content[0][5],
-                //"datebilan":new Date($scope.date.toString()+" "+$scope.time.toString()).getTime()
-                "datebilan":$scope.selectedItem.content[0][7],
-                "quantiteAbilanr":$scope.selectedItem.content[0][6],
-                "observations":$scope.selectedItem.content[0][8]
-              }
-            }else {
-              $scope.bilanToUpdate={
-                "reference":$scope.selectedItem.content[0][1],
-                "categorie":{
-                  "idCategorie":$scope.selectedItem.content[0][9]
-                },
-                "employeEmetteur":{
-                  "idEmploye":employeAuth
-                },
-                "quantiteRestante":$scope.selectedItem.content[0][5],
-                //"datebilan":new Date($scope.date.toString()+" "+$scope.time.toString()).getTime()
-                "datebilan":$scope.selectedItem.content[0][7],
-                "quantiteAbilanr":$scope.selectedItem.content[0][6],
-                "observations":$scope.selectedItem.content[0][8]
-              }
-            }
-          $http.put("/stocks/edit/bilan/"+$scope.endOfPath, $scope.bilanToUpdate).then(successCallback, errorCallback);
-        }
-        
+          //PUT a category7
         };
           
           
         $scope.reset=function(bilan){
-          $scope.categories.value1="Categorie";
-          //$scope.hideCategorie = false;
-          $scope.bilan={
-          "annee":dateB.getYear(),
-          "categorie":"Categorie",
-          "mois":dateB.getMonth(),
-          "quantiteDebut":0,
-          "quantiteFin":0
-        };
-          $scope.onload();
           $scope.date=null;
           $scope.time=null;
+          $scope.type=null;
+          $scope.mois=null;
           $scope.completeDate=null;
-          $scope.hideCategorie=false;        
+          $scope.hideCategorie=false;   
+          $scope.onload();     
         };
         $scope.edit=function(bilan){
-          $scope.reset();
-          $scope.bilan = bilan;
+
         };
         function successCallback(response){
           if($scope.isGet){
@@ -159,51 +67,244 @@
         function errorCallback(error){
           alert(error);
         }
+        $scope.updateDate=function () {
+          // body...
+          var b = new Date();
+          console.log($scope.date.toString().split('-'));
+        }
         $scope.details=function(idBilan) {
-          console.log("idBilan="+idBilan);
-          $scope.selectedItem = BilanService.get({idBilan:idBilan});
+
         };
         //DELETE a category
         $scope.delete=function (idBilan) {
-          if($scope.isGet){
-              console.log("idBilan delete="+idBilan);
-              $http.delete("/stocks/delete/bilan/"+idBilan);
-          }
+
         }
-        $scope.update = function (idEmploye) {
+        $scope.updateMois = function () {
+          var s = document.getElementById('Mois').defaultSelected;
+          console.log("s:"+s);
         };
         $scope.updateCategorie=function (idCategorie) {
-          $scope.hideCategorie = true;
-          console.log($scope.bilan.categorie);
-          if($scope.endOfPath=="bilan"){
-            $scope.currentCategorie.idCategorie = $scope.bilan.categorie[0];
-            $scope.restant = $scope.bilan.categorie[2];
-          }else{
-            if($scope.endOfPath!="bilan" && $scope.endOfPath!="bilans"){
-              $scope.currentCategorie.idCategorie = null;
-              console.log($scope.selectedItem.content[0][2]);
-              $scope.idC = $scope.selectedItem.content[0][2][0];
-              console.log("currentCategorie.idCategorie: "+$scope.currentCategorie.idCategorie);
-            }
-          }
+
         };
         $scope.updateEtat=function (etat) {
           $scope.hideEtat = true;
-        }
-        $scope.updateClient=function (client) {
-          $scope.hideClient = true;
-          $scope.currentClient.idClient = $scope.bilanToUpdate.client.idClient[0];
-        }
+        };
         $scope.gotoPage = function(page){
             $scope.page = page;
             $scope.getListe();
         }
 
+        $scope.pdf= function () {
+          //docDefinition.content[4].table.body[0]
+          var an = null;
+          var m = null;
+          var mm = null;
+          if($scope.type=='Mensuel'){
+            an = $scope.date.toString().split('-')[0];
+            m = $scope.moisEng[parseInt($scope.date.toString().split('-')[1])-1];
+            mm = $scope.month[parseInt($scope.date.toString().split('-')[1])-1];
+          }else{
+            an = $scope.date.toString().split('-')[0];
+            mm="";
 
+          }
+          var docDefinition = {
+            pageSize: 'A3',
+
+          // by default we use portrait, you can change it to landscape if you wish
+          pageOrientation: 'landscape',
+
+          // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+          pageMargins: [ 10, 10, 10, 10 ],
+              content: [
+                      
+  /*0*/       {
+                alignment: 'center',
+                columns: [
+                  {
+                    style:'header',
+                    width:300,
+                    text: 'Réplubique du Cameroun\n     *********     \nCameroon Telecommunications\n     *********     \nReprésentation Régionale Extrême-Nord\n     *********     \nAgence de Maroua\n     *********     \nService AC'
+                  },
+                  {
+                    style:'header',
+                    width:1400,
+                    text: 'Republic of Cameroon\n     *********     \nCameroon Telecommunications\n     *********     \nThe Far-North Regional Representation\n     *********     \nAgency of Maroua\n     *********     \nAC Service'
+                  },
+                ]
+              },
+/*1*/             '\n\n\n',
+/*2*/              {
+                    alignment:'center',
+                    bold:true,
+                    fontSize:18,
+                    'text':'Bilan '+mm+' '+an+''
+                  },
+/*3*/              '\n\n\n',
+/*4*/             {
+                style: 'tableExample',
+                table: {
+                  widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto'],
+                  headerRows: 1,
+                  // dontBreakRows: true,
+                  // keepWithHeaderRows: 1,
+                  body: [
+
+                    [
+                      {text: 'Num', style: 'tableHeader', width:50}, 
+                      {text: 'Catégorie', style: 'tableHeader', width:150}, 
+                      {text: 'Initial', style: 'tableHeader', width:50},
+                      {text: 'Approv', style: 'tableHeader', width:50},
+                      {text: 'Stock total', style: 'tableHeader', width:50},
+                      {text: 'Qté. vente ord', style: 'tableHeader', width:50},
+                      {text: 'PU\nvente ord', style: 'tableHeader', width:300},
+                      {text: 'Montant vente ord', style: 'tableHeader', width:50},
+                      {text: 'Qté. vente promo', style: 'tableHeader', width:50},
+                      {text: 'PU\nvente promo', style: 'tableHeader', width:50},
+                      {text: 'Montant vente promo', style: 'tableHeader', width:50},
+                      {text: 'Qté total ventes', style: 'tableHeader', width:50},
+                      {text: 'Montant total ventes', style: 'tableHeader', width:50},
+                      {text: 'Dé-stocké', style: 'tableHeader', width:50},
+                      {text: 'Reste', style: 'tableHeader', width:50},
+                      {text: 'Qté. \ndéfec-\ntueuse', style: 'tableHeader', width:50}
+                    ]
+                    ]
+                  }
+                },
+              ],
+              defaultStyle: {
+                columnGap: 20
+              },
+              styles: {
+                header: {
+                  fontSize:16
+                },
+                subheader: {
+                  fontSize: 16,
+                  bold: true,
+                  margin: [0, 10, 0, 5]
+                },
+                tableExample: {
+                  margin: [0, 5, 0, 15]
+                },
+                tableHeader: {
+                  bold: true,
+                  fontSize: 13,
+                  color: 'black'
+                }
+            },
+          };
+              
+            
+              var c= [];
+              const req = new XMLHttpRequest();
+              if($scope.type.toString()=='Mensuel'){
+                console.log("Mensuel");
+                var url = '/stocks/generer/bilan/mensuel?year='+an+'&month='+m+'';
+                req.open('GET', url, false);
+                req.send(null);
+                if (req.status === 200) {
+                  //var r = req.responseText.split("[[")[1].split("]]")[0].split(",");
+                  var obj = JSON.parse(req.responseText);
+                    for (var i = 0; i < obj.totalPages; i++) {
+                      var url = '/stocks/generer/bilan/mensuel?year='+an+'&month='+m+'&page='+i;
+                      req.open('GET', url, false);
+                      req.send(null);
+                      if (req.status===200) {
+                        var objet = JSON.parse(req.responseText);
+                        for (var j = 0; j < objet.content.length; j++) {
+                          c=[];
+                          c.push(j+1);
+                          c.push(objet.content[j][5]);
+                          c.push(objet.content[j][3]);
+                          c.push(objet.content[j][7]);
+                          c.push(objet.content[j][4]);
+                          c.push(objet.content[j][8]);
+                          c.push(objet.content[j][9]+"F");
+                          c.push((objet.content[j][9]*objet.content[j][8])+"F");
+                          c.push(objet.content[j][10]);
+                          c.push(objet.content[j][11]+"F");
+                          c.push((objet.content[j][10]*objet.content[j][11])+"F");
+                          c.push((objet.content[j][8]+objet.content[j][10]));
+                          c.push(((objet.content[j][9]*objet.content[j][8]) + (objet.content[j][10]*objet.content[j][11]))+"F");
+                          c.push(objet.content[j][12]);
+                          c.push(objet.content[j][4]-(objet.content[j][3]+objet.content[j][7]));
+                          c.push(objet.content[j][13]);
+                          docDefinition.content[4].table.body.push(c);
+                      }
+                      }
+                    }
+                } else {
+                    console.log("Status de la réponse: %d (%s)", req.status, req.statusText);
+                }
+              }
+              if($scope.type.toString()=='Annuel'){
+                console.log("Annuel");
+                var url = '/stocks/listes/categories/ids';
+                var ids = [];
+                req.open('GET', url, false);
+                req.send(null);
+                if (req.status===200) {
+                  ids = req.responseText.substr(1, req.responseText.length-2).split(',');
+                  console.log(typeof(ids));
+                  console.log(ids);
+                }
+                for (var i = 0; i < ids.length; i++) {
+                  c=[];
+                  var initial = null;
+                  var final = null;
+                  url = '/stocks/get/bilan/mensuel?year='+an+'&categorie='+parseInt(ids[i])+'&month=JANUARY';
+                  req.open('GET', url, false);
+                  req.send(null);
+                  if(req.status===200){
+                    var o = JSON.parse(req.responseText);
+                    if (o.content.length>0) {
+                      initial = o.content[0][3];  
+                    }
+                  }
+                  url = '/stocks/get/bilan/mensuel?year='+an+'&categorie='+parseInt(ids[i])+'&month=DECEMBER';
+                  req.open('GET', url, false);
+                  req.send(null);
+                  if(req.status === 200){
+                    var o = JSON.parse(req.responseText);
+                    if (o.content.length>0) {
+                      final = o.content[0][4];  
+                    }
+                  }
+                  url = '/stocks/generer/bilan/annuel?year='+an+'&categorie='+parseInt(ids[i])+'';
+                  req.open('GET', url, false);
+                  req.send(null);
+                  if(req.status === 200){
+                    var objet = JSON.parse(req.responseText);
+                    c.push(i+1);
+                    c.push(objet.content[0][3]);
+                    c.push(initial);
+                    c.push(objet.content[0][5]);
+                    c.push(objet.content[0][5]+initial);
+                    c.push(objet.content[0][6]);
+                    c.push(objet.content[0][7]+"F");
+                    c.push((objet.content[0][7]*objet.content[0][6])+"F");
+                    c.push(objet.content[0][8]);
+                    c.push(objet.content[0][9]+"F");
+                    c.push((objet.content[0][9]*objet.content[0][8])+"F");
+                    c.push((objet.content[0][6]+objet.content[0][8]));
+                    c.push(((objet.content[0][7]*objet.content[0][6]) + (objet.content[0][9]*objet.content[0][8]))+"F");
+                    c.push(objet.content[0][10]);
+                    c.push(objet.content[0][5]+initial-(initial+objet.content[0][6]));
+                    c.push(objet.content[0][11]);
+                    docDefinition.content[4].table.body.push(c);
+                  }
+                }
+                
+              }
+
+            pdfMake.createPdf(docDefinition).open();
+};
         //TimePicker
         var currentTime = new Date();
         $scope.currentTime = currentTime;
         $scope.month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        $scope.moisEng = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
         $scope.monthShort = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Dec'];
         $scope.weekdaysFull = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
         $scope.weekdaysLetter = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];

@@ -224,8 +224,8 @@ public class StockImpl implements IStockDao{
     }
 
     @Override
-    public Page<Object[]> genererBilanAnnuel(String year, int page, int size) {
-        return bilanRepository.genererBilanAnnuel(year, new PageRequest(page, size));
+    public Page<Object[]> genererBilanAnnuel(String year,Long idCategorie, int page, int size) {
+        return bilanRepository.genererBilanAnnuel(year, idCategorie, new PageRequest(page, size));
     }
 
     @Override
@@ -327,7 +327,17 @@ public class StockImpl implements IStockDao{
     public Page<Object[]> getRole(Long idRole, int page, int size) {
         return roleRepository.getRole(idRole, new PageRequest(page, size));
     }
-
+    
+    @Override
+    public Page<Object[]> getBilanCategorieMois(Long idCategorie, String mois,String annee,  int page, int size){
+        return bilanRepository.getBilanCategorieMois(idCategorie, mois, annee, new PageRequest(page, size));
+    }
+    
+    @Override
+    public List<Long> getAllIds(){
+        return categorieRepository.getAllIds();
+    }
+    
     @Override
     public Page<Object[]> getBilan(Long idBilan, int page, int size) {
         return bilanRepository.getBilan(idBilan, new PageRequest(page, size));

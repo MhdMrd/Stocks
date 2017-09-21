@@ -4,6 +4,7 @@ package org.mourad.stocks.controllers;
 import java.time.Month;
 import java.time.Year;
 import java.util.Date;
+import java.util.List;
 import javax.validation.Valid;
 import org.mourad.stocks.dao.IEmployeRepository;
 import org.mourad.stocks.entities.Achat;
@@ -286,7 +287,22 @@ public class ACController {
         
         return AC.genererBilanMensuel(month, year, 0, 10);
     }
-    
+    @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(
+            value = "/stocks/get/bilan/mensuel",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET
+    )
+    public Page<Object[]> getBilanCategorieMois(
+            @RequestParam(name = "categorie") Long idCategorie,
+            @RequestParam(name = "month")String month, 
+            @RequestParam(name = "year")String year,
+            @RequestParam(name = "categorie")Long categorie,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size){
+        
+        return AC.getBilanCategorieMois(idCategorie, month, year, page, size);
+    }
     @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
     @RequestMapping(
             value = "/stocks/generer/bilan/annuel",
@@ -295,10 +311,11 @@ public class ACController {
     )
     public Page<Object[]> genererBilanAnnuel(
             @RequestParam(name = "year")String year,
+            @RequestParam(name = "categorie") Long idCategorie,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size   ){
         
-        return AC.genererBilanAnnuel(year, 0, 10);
+        return AC.genererBilanAnnuel(year, idCategorie, page, size);
     }
     
     @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
@@ -312,5 +329,15 @@ public class ACController {
             @RequestParam(name = "size", defaultValue = "10") int size   ){
         
         return AC.getAllBilans(page, size);
+    }
+    @Secured(value = {"ROLE_CA", "ROLE_ChefAgence", "ROLE_Admin"})
+    @RequestMapping(
+            value = "/stocks/listes/categories/ids",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET
+    )
+    public List<Long> getAllIds(){
+        
+        return AC.getAllIds();
     }
 }

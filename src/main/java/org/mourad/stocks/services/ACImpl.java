@@ -137,7 +137,12 @@ public class ACImpl implements IAC{
     public void supprimerCategorie(Long idCategorie) {
         stockDao.supprimerCategorie(idCategorie);
     }
-
+    
+    @Override
+    public List<Long> getAllIds(){
+        return stockDao.getAllIds();
+    }
+    
     @Override
     public Bilan ajouterBilan(Bilan bilan) {
         return stockDao.ajouterBilan(bilan);
@@ -147,15 +152,20 @@ public class ACImpl implements IAC{
     public BilanJournalier genererBilanJournalier(Date date) {
         return stockDao.genererBilanJournalier(date);
     }
-
+    
+    @Override
+    public Page<Object[]> getBilanCategorieMois(Long idCategorie, String mois, String annee, int page, int size){
+        return stockDao.getBilanCategorieMois(idCategorie, mois, annee, page, size);
+    }
+    
     @Override
     public Page<Object[]> genererBilanMensuel(String month, String year, int page, int size) {
         return stockDao.genererBilanMensuel(month, year, page, size);
     }
 
     @Override
-    public Page<Object[]> genererBilanAnnuel(String year, int page, int size) {
-        return stockDao.genererBilanAnnuel(year, page, size);
+    public Page<Object[]> genererBilanAnnuel(String year,Long idCategorie, int page, int size) {
+        return stockDao.genererBilanAnnuel(year,idCategorie, page, size);
     }
     
     @Override

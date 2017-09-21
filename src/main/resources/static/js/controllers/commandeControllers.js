@@ -61,7 +61,7 @@
         $scope.getListe=function(){
           if($scope.endOfPath=="commandes"){
             $scope.isGet=true;
-            $http.get("/stocks/listes/commandes?page="+$scope.page+"&size=2").then(successCallback, errorCallback);
+            $http.get("/stocks/listes/commandes?page="+$scope.page).then(successCallback, errorCallback);
           }
         }
         $scope.getListe();

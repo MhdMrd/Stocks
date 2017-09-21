@@ -14,12 +14,12 @@
         <td>Initial</td>
         <td>Approv.</td>
         <td>Stock total</td>
-        <td>Qté. vente ord</td>
-        <td>PU vente ord</td>
-        <td>Montant vente ord</td>
-        <td>Qté. vente promo</td>
-        <td>PU vente promo</td>
-        <td>Montant vente promo</td>
+        <td>Qté. vente ordinaire</td>
+        <td>PU vente ordinaire</td>
+        <td>Montant vente ordinaire</td>
+        <td>Qté. vente promotionnel</td>
+        <td>PU vente promotionnel</td>
+        <td>Montant vente promotionnel</td>
         <td>Qté total ventes</td>
         <td>Montant total ventes</td>
         <td>Déstockage</td>
@@ -35,11 +35,11 @@
         <td>{{bilan[7]}}</td>
         <td>{{bilan[4]}}</td>
         <td>{{bilan[8]}}</td>
-        <td>{{bilan[9]}}</td>
-        <td>{{bilan[9]*bilan[8]}}</td>
+        <td>{{bilan[9]}} FCFA</td>
+        <td>{{bilan[9]*bilan[8]}} FCFA</td>
         <td>{{bilan[10]}}</td>
-        <td>{{bilan[11]}}</td>
-        <td>{{bilan[10]*bilan[11]}}</td>
+        <td>{{bilan[11]}} FCFA</td>
+        <td>{{bilan[10]*bilan[11]}} FCFA</td>
         <td>{{bilan[8]+bilan[10]}}</td>
         <td>{{(bilan[9]*bilan[8])+(bilan[10]*bilan[11])}}</td>
         <td>{{bilan[12]}}</td>
@@ -55,44 +55,4 @@
         <li ng-class="{disabled:page+1==total}"><a ng-click="gotoPage($index+1)" ng-if="$index+1<total"><i class="fa fa-angle-right"></i></a></li>
     </ul>
   </div>
-</div>
-<div id="informationsModal" class="modal">
-    <div class="modal-content center">
-        <div class="title">
-          <h5>Détails de la bilan</h5>
-        </div>
-        <div class="row">
-                <p class="left-align">Référence:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
-                <p class="left-align">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
-                <p class="left-align">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
-                <p class="left-align">Restant:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}</p>
-                <p class="left-align">Commandé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
-                <p class="left-align">Date de bilan:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
-                <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
-        </div>
-
-    </div>
-    <div class="modal-footer">
-        <a href="" align="center" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-    </div>
-</div>
-<div id="deleteModal" class="modal">
-    <div class="modal-content center">
-        <div class="title">
-          <h5>Êtes-vous certain de vouloir supprimer cette bilan?</h5>
-        </div>
-        <div class="row">
-                <p class="left-align">Référence:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][1]}}</p>
-                <p class="left-align">Catégorie:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][2]}}</p>
-                <p class="left-align">Employé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][3]}}&nbsp&nbsp{{selectedItem.content[0][4]}}</p>
-                <p class="left-align">Restant:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][5]}}</p>
-                <p class="left-align">Commandé:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][6]}}</p>
-                <p class="left-align">Date de bilan:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][7] | date : "yyyy-MM-dd HH:mm:ss"}}</p>
-                <p class="left-align">Observations:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{selectedItem.content[0][8]}}</p>
-        </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#/stocks/listes/bilans" class="modal-action modal-close waves-effect waves-green btn-flat center" ng-click="delete(selectedItem.content[0][0])">Oui</a>
-      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Non</a>
-    </div>
 </div>

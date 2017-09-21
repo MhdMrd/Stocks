@@ -111,7 +111,14 @@ public class StocksApplication implements CommandLineRunner{
         b = stockDao.ajouterBilan(new Bilan(sim, Month.APRIL.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 8) /*Bilan(sim, Month.MAY.toString(), Year.now().toString(), 15, 12)*/);
         
         Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
-        Bilan b2 = stockDao.ajouterBilan(new Bilan(c, Month.APRIL.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b2 = stockDao.ajouterBilan(new Bilan(sim, Month.JANUARY.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b3 = stockDao.ajouterBilan(new Bilan(sim, Month.DECEMBER.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b4 = stockDao.ajouterBilan(new Bilan(c, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
+        Bilan b5 = stockDao.ajouterBilan(new Bilan(c, Month.JANUARY.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b6 = stockDao.ajouterBilan(new Bilan(c, Month.DECEMBER.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b7 = stockDao.ajouterBilan(new Bilan(s, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
+        Bilan b8 = stockDao.ajouterBilan(new Bilan(s, Month.JANUARY.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b9 = stockDao.ajouterBilan(new Bilan(s, Month.DECEMBER.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
         System.out.println(b.getAnnee());
         System.out.println("----------------Liste des produits de la catégorie:"+c.getNom()+"----------------");
         /*List<Vente> liste=stockDao.listeVentes();

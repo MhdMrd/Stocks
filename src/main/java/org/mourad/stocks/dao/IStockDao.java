@@ -48,6 +48,7 @@ public interface IStockDao {
     public Page<Object[]> listeEmployes(int page, int size);
     public Page<Object[]> listeClients(int page, int size);
     public Page<Object[]> listeCategories(int page, int size);
+    public List<Long> getAllIds();
     public Vente modifierVente(Vente vente, Long id);
     public void supprimerVente(Long id);
     public Vente findVenteByProduitAndEmploye(Produit produit, Employe employe);
@@ -64,7 +65,8 @@ public interface IStockDao {
     public Page<Object[]> getBilan(Long idBilan, int page, int size);
     public BilanJournalier genererBilanJournalier(Date date);
     public Page<Object[]> genererBilanMensuel(String month, String year, int page, int size);
-    public Page<Object[]> genererBilanAnnuel(String year, int page, int size);
+    public Page<Object[]> genererBilanAnnuel(String year,Long idCategorie, int page, int size);
+    public Page<Object[]> getBilanCategorieMois(Long idCategorie, String mois,String annee,  int page, int size);
     
     /*               _
                     /_\
