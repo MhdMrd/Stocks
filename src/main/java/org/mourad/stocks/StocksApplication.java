@@ -110,15 +110,15 @@ public class StocksApplication implements CommandLineRunner{
         Bilan b;
         b = stockDao.ajouterBilan(new Bilan(sim, Month.APRIL.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 8) /*Bilan(sim, Month.MAY.toString(), Year.now().toString(), 15, 12)*/);
         
-        Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
-        Bilan b2 = stockDao.ajouterBilan(new Bilan(sim, Month.JANUARY.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
-        Bilan b3 = stockDao.ajouterBilan(new Bilan(sim, Month.DECEMBER.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
-        Bilan b4 = stockDao.ajouterBilan(new Bilan(c, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
-        Bilan b5 = stockDao.ajouterBilan(new Bilan(c, Month.JANUARY.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
-        Bilan b6 = stockDao.ajouterBilan(new Bilan(c, Month.DECEMBER.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
-        Bilan b7 = stockDao.ajouterBilan(new Bilan(s, Month.SEPTEMBER.toString(), Year.now().toString(), 10, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 2, 7));
-        Bilan b8 = stockDao.ajouterBilan(new Bilan(s, Month.JANUARY.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
-        Bilan b9 = stockDao.ajouterBilan(new Bilan(s, Month.DECEMBER.toString(), Year.now().toString(), 15, 5, 2, sim.getPrixNormal(), 3, sim.getPrixPromotionel(), 1, 1, 13));
+        Bilan b1 = stockDao.ajouterBilan(new Bilan(sim, Month.SEPTEMBER.toString(), Year.now().toString(), 72, 12, 65, sim.getPrixNormal(), 15, sim.getPrixPromotionel(), 15, 20, 70));
+        Bilan b2 = stockDao.ajouterBilan(new Bilan(sim, Month.JANUARY.toString(), Year.now().toString(), 77, 25, 82, sim.getPrixNormal(), 10, sim.getPrixPromotionel(), 41, 21, 75));
+        Bilan b3 = stockDao.ajouterBilan(new Bilan(sim, Month.DECEMBER.toString(), Year.now().toString(), 86, 20, 12, sim.getPrixNormal(), 34, sim.getPrixPromotionel(), 18, 89, 25));
+        Bilan b4 = stockDao.ajouterBilan(new Bilan(c, Month.SEPTEMBER.toString(), Year.now().toString(), 20, 87, 35, sim.getPrixNormal(), 24, sim.getPrixPromotionel(), 12, 78, 35));
+        Bilan b5 = stockDao.ajouterBilan(new Bilan(c, Month.JANUARY.toString(), Year.now().toString(), 25, 78, 15, sim.getPrixNormal(), 4, sim.getPrixPromotionel(), 97, 35, 13));
+        Bilan b6 = stockDao.ajouterBilan(new Bilan(c, Month.DECEMBER.toString(), Year.now().toString(), 96, 45, 32, sim.getPrixNormal(), 86, sim.getPrixPromotionel(), 89, 12, 45));
+        Bilan b7 = stockDao.ajouterBilan(new Bilan(s, Month.SEPTEMBER.toString(), Year.now().toString(), 15, 83, 26, sim.getPrixNormal(), 28, sim.getPrixPromotionel(), 12, 32, 77));
+        Bilan b8 = stockDao.ajouterBilan(new Bilan(s, Month.JANUARY.toString(), Year.now().toString(), 100, 45, 95, sim.getPrixNormal(), 96, sim.getPrixPromotionel(), 75, 23, 15));
+        Bilan b9 = stockDao.ajouterBilan(new Bilan(s, Month.DECEMBER.toString(), Year.now().toString(), 82, 46, 78, sim.getPrixNormal(), 72, sim.getPrixPromotionel(), 43, 18, 84));
         System.out.println(b.getAnnee());
         System.out.println("----------------Liste des produits de la catégorie:"+c.getNom()+"----------------");
         /*List<Vente> liste=stockDao.listeVentes();

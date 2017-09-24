@@ -4,6 +4,15 @@ stocksApp.config(stateConfig);
 function stateConfig($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   $routeProvider
+    //STATS Controllers
+    .when("/stocks/stats/gen",{
+      templateUrl:"views/statsGen.html",
+      controller:"statsGenController"
+    })
+    .when("/stocks/stats/per/category",{
+      templateUrl:"views/statsCat.html",
+      controller:"statsGenController"
+    })
     //HOME Controller
     .when("/", {
       templateUrl:"home_.html",

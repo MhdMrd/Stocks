@@ -199,7 +199,6 @@
               var c= [];
               const req = new XMLHttpRequest();
               if($scope.type.toString()=='Mensuel'){
-                console.log("Mensuel");
                 var url = '/stocks/generer/bilan/mensuel?year='+an+'&month='+m+'';
                 req.open('GET', url, false);
                 req.send(null);
